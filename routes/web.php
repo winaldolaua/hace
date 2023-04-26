@@ -60,7 +60,7 @@ Route::get('/editprof', function () {
     return view('editprof');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest') ;
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 
