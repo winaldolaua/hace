@@ -24,11 +24,11 @@
 
 <body class="bg-gradient-success">
 
-@if(session()->has('loginError'))
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-{{ session('loginError') }}
-</div>
-@endif
+    @if (session()->has('loginError'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('loginError') }}
+        </div>
+    @endif
 
 
     <div class="container">
@@ -51,18 +51,20 @@
                                     <form class="user" action="/login" method="post">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user @error('email') is-invalid @enderror"
+                                            <input type="email" name="email"
+                                                class="form-control form-control-user @error('email') is-invalid @enderror"
                                                 id="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address..." autofocus>
-                                                @error('email')
+                                            @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
-                                                @enderror
+                                            @enderror
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
-                                                id="password" placeholder="Password" required>
+                                            <input type="password" name="password"
+                                                class="form-control form-control-user" id="password"
+                                                placeholder="Password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -70,17 +72,7 @@
 
                                             </div>
 
-                                            <div class="dropdown show">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  Login Sebagai?
-                                                </a>
 
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                  <a class="dropdown-item" href="#">Penyelia</a>
-                                                  <a class="dropdown-item" href="#">Auditor</a>
-                                                  <a class="dropdown-item" href="#">Validator</a>
-                                                </div>
-                                              </div>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -128,5 +120,3 @@
 
 
 </html>
-
-

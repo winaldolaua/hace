@@ -13,6 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $roles = ['admin','penyelia','auditor','verfikator'];
+        foreach ($roles as $key => $role) {
+            DB::table('role')->insert([
+                'role_name' => $role
+            ]);
+        }
     }
 }

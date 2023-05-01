@@ -17,9 +17,14 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('beranda',[
-        "title" => "beranda"
-    ]);
+    if (Auth::user()){
+
+        return view('beranda',[
+            "title" => "beranda"
+        ]);
+    }else{
+        return redirect('/login');
+    }
 });
 
 Route::get('/beranda', function () {
@@ -62,12 +67,10 @@ Route::get('/editprof', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest') ;
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 
 Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-
-
-
