@@ -57,7 +57,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                               Dikembalikan</div>
+                                Dikembalikan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">
@@ -75,7 +75,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                               Sedang Sidang Fatwa</div>
+                                Sedang Sidang Fatwa</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">
@@ -92,7 +92,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                               Dibatalkan</div>
+                                Dibatalkan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">
@@ -109,7 +109,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                               Sertifikat Terbit</div>
+                                Sertifikat Terbit</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">
@@ -126,7 +126,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-black text-uppercase mb-1">
-                               Masa Berlaku Hampir Habis</div>
+                                Masa Berlaku Hampir Habis</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">
@@ -145,11 +145,11 @@
 
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
-<div class="container my-auto">
-    <div class="copyright text-center my-auto">
-        <span>Copyright &copy; HCCI 2023</span>
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; HCCI 2023</span>
+        </div>
     </div>
-</div>
 </footer>
 <!-- End of Footer -->
 
@@ -161,7 +161,7 @@
 
 <!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
-<i class="fas fa-angle-up"></i>
+    <i class="fas fa-angle-up"></i>
 </a>
 
 

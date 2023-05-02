@@ -13,11 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $roles = ['admin','penyelia','auditor','verfikator'];
-        foreach ($roles as $key => $role) {
-            DB::table('role')->insert([
-                'role_name' => $role
-            ]);
-        }
+        $this->call([
+            UserSeeder::class,
+            RoleSeeder::class,
+        ]);
     }
 }
