@@ -65,9 +65,11 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item {{ $title === '' ? 'active' : '' }}">
+                @can('admin')
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bantuan</span></a>
+                @endcan
             </li>
 
             <!-- Divider -->
@@ -101,8 +103,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-success" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -237,8 +239,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -257,47 +259,37 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             @auth
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">qwe</span>
-                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                                </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">qwe</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
                             @else
-                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Use</span>
-                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
-                                </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Use</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                            </a>
 
 
                             @endauth
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-
-                                <a class="dropdown-item" href="/login">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Login
+                                <a class="dropdown-item" href="{{url('edit-profile')}}">
+                                    <i class="fas fa-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Edit Profile
                                 </a>
-
-                                <form action="/logout" class="dropdown-item" method="post"
+                                <form action="{{url('/logout')}}" class="dropdown-item" method="post"
                                     style="cursor: pointer;">
                                     @csrf
                                     <button class="border-0 bg-transparent p-0">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                         <span>Logout</span>
                                     </button>
-
                                 </form>
-
-
                             </div>
-
-
-
                         </li>
-
                     </ul>
-
                     <!-- Logout Modal-->
                     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -312,16 +304,11 @@
                                 <div class="modal-body">Select "Logout" below if you are ready to end your current
                                     session.</div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-secondary" type="button"
-                                        data-dismiss="modal">Cancel</button>
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                     <a class="btn btn-primary" href="/login">Logout</a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
-
-
                 </nav>
                 <!-- End of Topbar -->

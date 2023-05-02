@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,62 +16,24 @@ use App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    if (Auth::user()){
-
-        return view('beranda',[
-            "title" => "beranda"
-        ]);
-    }else{
-        return redirect('/login');
-    }
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login', 'index')->middleware('guest')->name('login');
+    Route::post('/login','authenticate');
+    Route::post('/logout', 'logout');
 });
-
-Route::get('/beranda', function () {
-    return view('beranda',[
-        "title" => "beranda"
-    ]);
+Route::controller(UserLoginController::class)->group(function(){
+    Route::middleware('auth')->group(function(){
+        Route::get('/tagihan', 'tagihan');
+        Route::get('/status', 'status');
+        Route::get('/sertifikasi', 'sertifikasi');
+        Route::get('/', 'beranda');
+        Route::get('/beranda', 'beranda');
+        Route::get('/edit-profile', 'editProfile');
+    });
 });
-
-Route::get('/sertifikasi', function () {
-    return view('sertifikasi', [
-        "title" => "sertifikasi",
-        "active" => 'sertifikasi'
-    ]);
+Route::controller(RegisterController::class)->group(function(){
+    Route::middleware('guest')->group(function(){
+        Route::get('/register', 'index');
+        Route::post('/register', 'store');
+    });
 });
-
-Route::get('/status', function () {
-    return view('status', [
-        "title" => "status",
-        "active" => 'status'
-    ]);
-});
-
-Route::get('/tagihan', function () {
-    return view('tagihan', [
-        "title" => "tagihan",
-        "active" => 'tagihan'
-    ]);
-});
-
-Route::get('/editprof', function () {
-    return view('editprof', [
-        "title" => "editprof",
-        "active" => 'editprof'
-    ]);
-});
-
-Route::get('/editprof', function () {
-    return view('editprof');
-});
-
-Route::get('/login', [LoginController::class, 'index'])->middleware('guest') ;
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
-
-
-Route::get('/register', [RegisterController::class, 'index']);
-Route::post('/register', [RegisterController::class, 'store']);
-
-Route::get('/dashboard', [DashboardController::class, 'index']);
