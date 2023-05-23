@@ -30,10 +30,10 @@ class UserSeeder extends Seeder
             ])
         ]);
         foreach ($users as $key => $user) {
-            if($key === 'admin') $role_id => 1,
-            else if($key === 'penyelia') $role_id = 2,
-            else if($key === 'auditor') $role_id = 3,
-            else $role_id = 4
+            if($key === 'admin') $role_id = 1;
+            else if($key === 'penyelia') $role_id = 2;
+            else if($key === 'auditor') $role_id = 3;
+            else $role_id = 4;
             User::create([
                 'role_id' => $role_id,
                 'name' => $user['name'],
