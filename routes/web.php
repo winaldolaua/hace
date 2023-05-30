@@ -16,24 +16,25 @@ use App\Http\Controllers\UserLoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::controller(LoginController::class)->group(function(){
-//     Route::get('/login', 'index')->middleware('guest')->name('login');
-//     Route::post('/login','authenticate');
-//     Route::post('/logout', 'logout');
-// });
-// Route::controller(UserLoginController::class)->group(function(){
-//     Route::middleware('auth')->group(function(){
-//         Route::get('/tagihan', 'tagihan');
-//         Route::get('/status', 'status');
-//         Route::get('/sertifikasi', 'sertifikasi');
-//         Route::get('/', 'beranda');
-//         Route::get('/beranda', 'beranda');
-//         Route::get('/edit-profile', 'editProfile');
-//     });
-// });
-// Route::controller(RegisterController::class)->group(function(){
-//     Route::middleware('guest')->group(function(){
-//         Route::get('/register', 'index');
-//         Route::post('/register', 'store');
-//     });
-// });
+Route::controller(LoginController::class)->group(function(){
+    Route::get('/login', 'index')->middleware('guest')->name('login');
+    Route::post('/login','authenticate');
+    Route::post('/logout', 'logout');
+});
+Route::controller(UserLoginController::class)->group(function(){
+    Route::middleware('auth')->group(function(){
+        Route::get('/tagihan', 'tagihan');
+        Route::get('/status', 'status');
+        Route::get('/sertifikasi', 'sertifikasi');
+        Route::get('/', 'beranda');
+        Route::get('/beranda', 'beranda');
+        Route::get('/edit-profile', 'editProfile');
+        Route::get('/kelus', 'kelus');
+    });
+});
+Route::controller(RegisterController::class)->group(function(){
+    Route::middleware('guest')->group(function(){
+        Route::get('/register', 'index');
+        Route::post('/register', 'store');
+    });
+});

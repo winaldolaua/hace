@@ -37,4 +37,10 @@ class UserLoginController extends Controller
             "title" => "beranda"
         ]);
     }
+    public function kelus(){
+        return view('user-login.kelus',[
+            "title" => "kelus",
+            "active" => 'kelus'
+        ]);
+    }
 }
