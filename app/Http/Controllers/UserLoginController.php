@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Status;
-
+use App\Models\Sertification;
 class UserLoginController extends Controller
 {
     public function beranda(){
@@ -35,10 +35,17 @@ class UserLoginController extends Controller
     public function sertifikasi(Request $request){
         $current_status =  $request->query('status');
         $status = Status::all();
+        
+        if (isset($current_status)) {
+            $sertification = Sertification::with(['status', 'responsibler'])->whereRelation('status', 'name', $current_status)->get();
+        } else {
+            $sertification = Sertification::with(['status', 'responsibler'])->get();
+        }
         return view('user-login.sertifikasi',[
             "title" => "sertifikasi",
             "active" => 'sertifikasi',
             "status" => $status,
+            "data" => $sertification,
             "current_status" => $current_status,
         ]);
     }
@@ -85,7 +92,7 @@ class UserLoginController extends Controller
         return view('user-login.add-sertifikasi', [
             "title" => "Tambah Sertifikasi",
             "active" => 'sertifikasi',
-            "list_file" => $list_file
+            "list_file" => $list_file,
         ]);
     }
     public function kelus(){
