@@ -10,26 +10,10 @@ class UserLoginController extends Controller
 {
     public function beranda(){
         if (!Auth::check()) return redirect()->route('login');
+        $status = Status::all();
         return view('user-login.beranda',[
             "title" => "beranda",
-        ]);
-    }
-    public function editProfile(){
-        return view('user-login.edit-profile', [
-            "title" => "editprof",
-            "active" => 'editprof'
-        ]);
-    }
-    public function tagihan(){
-        return view('user-login.tagihan', [
-            "title" => "tagihan",
-            "active" => 'tagihan'
-        ]);
-    }
-    public function status(){
-        return view('user-login.status', [
-            "title" => "status",
-            "active" => 'status'
+            "status" => $status,
         ]);
     }
     public function sertifikasi(Request $request){
@@ -94,12 +78,6 @@ class UserLoginController extends Controller
             "title" => "Tambah Sertifikasi",
             "active" => 'sertifikasi',
             "list_file" => $list_file,
-        ]);
-    }
-    public function kelus(){
-        return view('user-login.kelus',[
-            "title" => "kelus",
-            "active" => 'kelus'
         ]);
     }
 }

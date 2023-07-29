@@ -15,10 +15,57 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $status = collect([
-            'terkirim', 'validasi', 'verifikasi', 'dikembalikan', 'dibatalkan', 'sidang fatwa', 'sertifikat terbit', 'selesai'
+            [
+                'name' => 'terkirim', // penyelia kirim
+                'color' => 'primary'
+            ],
+            [
+                'name' => 'validasi', //bpjph nge cek => lanjut / dikembalikan -> klik tombol
+                'color' => 'warning'
+            ],
+            [
+                'name' => 'verifikasi', // offline -> auditor hitung biaya -> ngirim file
+                'color' => 'warning'
+            ],
+            [
+                'name' => 'selesai verifikasi', // bpjph buat tagihan -> input angka
+                'color' => 'primary'
+            ],
+            [
+                'name' => 'belum bayar', // penyelia bayar tagihan -> ngirim file
+                'color' => 'info'
+            ],
+            [
+                'name' => 'validasi transaksi', // bpjph cek tagihan -> ngirim sttd
+                'color' => 'warning'
+            ],
+            [
+                'name' => 'lunas', // auditor verifikasi => lanjut / dibatalkan / dikembalikan -> klik tombol
+                'color' => 'info'
+            ],
+            [
+                'name' => 'sidang fatwa', // mui verifikasi -> klik tombol
+                'color' => 'warning'
+            ],
+            [
+                'name' => 'lulus sidang', // bpjph kirim sertifikat -> kirim file
+                'color' => 'info'
+            ],
+            [
+                'name' => 'selesai', // penyelia unduh -> klik tombol
+                'color' => 'success'
+            ],
+            [
+                'name' => 'dikembalikan',
+                'color' => 'danger'
+            ],
+            [
+                'name' => 'dibatalkan',
+                'color' => 'secondary'
+            ],
         ]);
         foreach ($status as $index => $st) {
-            Status::create(['name' => $st]);
+            Status::create(['name' => $st['name'], 'color' => $st['color']]);
         }
     }
 }

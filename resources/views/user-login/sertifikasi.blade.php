@@ -41,6 +41,7 @@
                         Ajukan Sertifikasi
                     </button>
                 </div>
+                {{--/TODO: PAGINATION--}}
                 <div class="table-responsive px-2">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -51,6 +52,7 @@
                                 <th>Jenis Pengajuan</th>
                                 <th>Tipe Produk</th>
                                 <th>Status</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,9 +65,13 @@
                                 <td>{{$value->responsibler->name}}</td>
                                 <td>{{$value->service_type}}</td>
                                 <td>{{$value->product_type}}</td>
-                                <td class="text-capitalize">
-                                    {{$value->status->name}}
+                                <td class="text-capitalize text-center ">
+                                    <span class="badge badge-{{$value->status->color}}">
+
+                                        {{$value->status->name}}
+                                    </span>
                                 </td>
+                                <td> </td>
                             </tr>
                             @endforeach
                         </tbody>
