@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Status;
 
 class StatusSeeder extends Seeder
 {
@@ -13,5 +14,11 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
+        $status = collect([
+            'Terkirim', 'Validasi', 'Verifikasi', 'Dikembalikan', 'Dibatalkan', 'Sidang Fatwa', 'Sertifikat Terbit', 'Selesai'
+        ]);
+        foreach ($status as $index => $st) {
+            Status::create(['name' => $st]);
+        }
     }
 }

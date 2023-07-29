@@ -22,6 +22,7 @@ class CreateSertificationsTable extends Migration
             $table->foreignId('legalist_id');
             $table->foreignId('product_id');
             $table->foreignId('register_id');
+            $table->foreignId('status_id');
             $table->string('id_number');
             $table->timestamp('date');
             $table->string('apply_number', 100);
