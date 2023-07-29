@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Product;
+use App\Models\Responsibler;
 
-class ProductSeeder extends Seeder
+class ResponsiblerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
