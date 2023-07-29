@@ -9,22 +9,12 @@
                 <ul class="nav nav-tabs">
                     @foreach ($status as $st => $value)
                     <li class="nav-item">
-                        <a
-                            class="nav-link active"
-                            aria-current="page"
-                            href="#"
-                            >{{ $value->name }}</a
-                        >
+                        <a class="nav-link active" aria-current="page" href="#">{{ $value->name }}</a>
                     </li>
                     @endforeach
                 </ul>
                 <div class="table-responsive">
-                    <table
-                        class="table table-bordered"
-                        id="dataTable"
-                        width="100%"
-                        cellspacing="0"
-                    >
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Name</th>
