@@ -34,19 +34,20 @@ class UserLoginController extends Controller
     }
     public function sertifikasi(Request $request){
         $current_status =  $request->query('status');
+        $current_search =  $request->query('search');
         $status = Status::all();
-        
+
         if (isset($current_status)) {
-            $sertification = Sertification::with(['status', 'responsibler'])->whereRelation('status', 'name', $current_status)->get();
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%'.$current_search.'%')->whereRelation('status', 'name', $current_status)->get();
         } else {
-            $sertification = Sertification::with(['status', 'responsibler'])->get();
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%'.$current_search.'%')->get();
         }
         return view('user-login.sertifikasi',[
             "title" => "sertifikasi",
             "active" => 'sertifikasi',
             "status" => $status,
             "data" => $sertification,
-            "current_status" => $current_status,
+            "request" => $request
         ]);
     }
     public function addSertif()
