@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,15 +18,14 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
-
 </head>
 
 <body class="bg-gradient-success">
 
     @if (session()->has('loginError'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('loginError') }}
-        </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('loginError') }}
+    </div>
     @endif
 
 
@@ -56,9 +54,9 @@
                                                 id="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address..." autofocus>
                                             @error('email')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
                                             @enderror
                                         </div>
                                         <div class="form-group">
