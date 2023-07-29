@@ -7,17 +7,16 @@
         <div class="card shadow mb-5">
             <div class="card-body p-2">
                 <ul class="nav nav-tabs">
+                    @foreach ($status as $st => $value)
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"
-                            >Semua</a
+                        <a
+                            class="nav-link active"
+                            aria-current="page"
+                            href="#"
+                            >{{ $value->name }}</a
                         >
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
+                    @endforeach
                 </ul>
                 <div class="table-responsive">
                     <table

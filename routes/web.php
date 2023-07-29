@@ -27,7 +27,6 @@ Route::controller(UserLoginController::class)->group(function(){
         Route::get('/tagihan', 'tagihan');
         Route::get('/status', 'status');
         Route::get('/sertifikasi', 'sertifikasi');
-        Route::get('/beranda', 'beranda');
         Route::get('/edit-profile', 'editProfile');
         Route::get('/kelus', 'kelus');
     });

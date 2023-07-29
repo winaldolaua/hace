@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Status;
 
 class UserLoginController extends Controller
 {
+    public function beranda(){
+        if (!Auth::check()) return redirect()->route('login');
+        return view('user-login.beranda',[
+            "title" => "beranda",
+        ]);
+    }
     public function editProfile(){
         return view('user-login.edit-profile', [
             "title" => "editprof",
@@ -26,15 +33,11 @@ class UserLoginController extends Controller
         ]);
     }
     public function sertifikasi(){
+        $status = Status::all();
         return view('user-login.sertifikasi',[
             "title" => "sertifikasi",
-            "active" => 'sertifikasi'
-        ]);
-    }
-    public function beranda(){
-        if (!Auth::check()) return redirect()->route('login');
-        return view('user-login.beranda',[
-            "title" => "beranda"
+            "active" => 'sertifikasi',
+            "status" => $status
         ]);
     }
     public function kelus(){
