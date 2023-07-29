@@ -1,12 +1,6 @@
 <!-- Sidebar -->
-<ul
-    class="navbar-nav bg-success sidebar sidebar-dark accordion"
-    id="accordionSidebar"
->
-    <a
-        class="sidebar-brand d-flex align-items-center justify-content-center"
-        href="index.html"
-    >
+<ul class="navbar-nav bg-success sidebar sidebar-dark accordion" id="accordionSidebar">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -29,10 +23,7 @@
     <hr class="sidebar-divider" />
     @endcan
     <li class="nav-item {{ $title === 'sertifikasi' ? 'active' : '' }}">
-        <a
-            class="nav-link {{ $title === 'sertifikasi' ? 'active' : '' }}"
-            href="/sertifikasi"
-        >
+        <a class="nav-link {{ $title === 'sertifikasi' ? 'active' : '' }}" href="/sertifikasi">
             <i class="fas fa-clipboard"></i>
             <span>Sertifikasi</span>
         </a>
