@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Responsibler;
 
 class ResponsiblerSeeder extends Seeder
 {
@@ -13,6 +14,5 @@ class ResponsiblerSeeder extends Seeder
      */
     public function run()
     {
-        //
     }
 }
