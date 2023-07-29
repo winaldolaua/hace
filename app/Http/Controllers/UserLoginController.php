@@ -32,12 +32,14 @@ class UserLoginController extends Controller
             "active" => 'status'
         ]);
     }
-    public function sertifikasi(){
+    public function sertifikasi(Request $request){
+        $current_status =  $request->query('status');
         $status = Status::all();
         return view('user-login.sertifikasi',[
             "title" => "sertifikasi",
             "active" => 'sertifikasi',
-            "status" => $status
+            "status" => $status,
+            "current_status" => $current_status,
         ]);
     }
     public function kelus(){

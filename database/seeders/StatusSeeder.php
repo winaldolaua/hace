@@ -15,7 +15,7 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $status = collect([
-            'Terkirim', 'Validasi', 'Verifikasi', 'Dikembalikan', 'Dibatalkan', 'Sidang Fatwa', 'Sertifikat Terbit', 'Selesai'
+            'terkirim', 'validasi', 'verifikasi', 'dikembalikan', 'dibatalkan', 'sidang fatwa', 'sertifikat terbit', 'selesai'
         ]);
         foreach ($status as $index => $st) {
             Status::create(['name' => $st]);
