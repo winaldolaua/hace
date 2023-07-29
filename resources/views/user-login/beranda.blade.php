@@ -6,18 +6,21 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Halaman {{Str::title(Auth::user()->role->name)}}</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Download</a>
+        {{--<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Download</a>--}}
     </div>
     <!-- Content Row -->
     <div class="row">
-        <div class=" col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+        @foreach ( $status as $index => $value)
+
+        <div class="col-md-4 mb-4">
+            <div class="card border-left-{{$value->color}} shadow h-100 py-2">
                 <div class="card-body p-3">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Pengajuan</div>
+                            <div class="text-xs font-weight-bold text-{{$value->color}} text-uppercase mb-1">
+                                {{$value->name}}
+                            </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">
@@ -27,6 +30,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </div>
 
