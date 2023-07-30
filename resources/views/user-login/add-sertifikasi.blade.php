@@ -3,7 +3,7 @@
     <h1><b>Tambah Sertifikasi</b></h1>
 </div>
 <div class="row mx-4">
-    <form action="{{ route('add-sertif') }}" method="post" class="row col-12">
+    <form action="{{ route('add-sertif') }}" method="post" enctype="multipart/form-data" class="row col-12">
         @csrf
         <div class="col-8">
             <div class="card shadow mb-5">
@@ -245,6 +245,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Product -->
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
                             <b>Nama Produk*</b>
@@ -253,7 +254,7 @@
                             <b class="col-6 py-2">Nama Produk</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Nama"
-                                    value="Produk.{{Str::random(10)}}" name="produk-nama" />
+                                    value="Produk.{{Str::random(10)}}" name="product-name" />
                             </div>
                         </div>
                     </div>
@@ -289,6 +290,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Document -->
             <div class="card shadow mb-5">
                 <div class="card-header">
                     <h4 class="mb-0 text-white py-2 text-center">
@@ -305,7 +307,8 @@
                             </p>
                             <div class="input-group mb-3 col-6">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="{{ $value['name'] }}" />
+                                    <input type="file" class="custom-file-input" id="{{ $value['name'] }}"
+                                        name="file{{$file}}" />
                                     <label class="custom-file-label" for="{{ $value['name'] }}"
                                         aria-describedby="inputGroupFileAddon02">Pilih File</label>
                                 </div>
