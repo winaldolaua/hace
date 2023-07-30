@@ -42,9 +42,11 @@
                                 value="{{$request->search}}" />
                         </form>
                     </div>
+                    @can('penyelia')
                     <button class="btn btn-primary full-width col-3" data-bs-toggle="modal" data-bs-target="#addModal">
                         Ajukan Sertifikasi
                     </button>
+                    @endcan
                 </div>
                 {{--/TODO: PAGINATION--}}
                 <div class="table-responsive px-2">
