@@ -75,11 +75,83 @@
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info dropdown-toggle"
                                             data-toggle="dropdown" aria-expanded="false">
-                                            Action
+                                            Aksi
                                         </button>
-                                        {{-- BPJPH --}}
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#">Validasi</a>
+                                            {{-- ALL --}}
+                                            <a class="dropdown-item" href="#">Detail</a>
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 11)">
+                                                Kembalikan
+                                            </button>
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 12)">
+                                                Batalkan
+                                            </button>
+
+                                            {{-- AUDITOR --}}
+                                            @can('auditor')
+                                            <a class="dropdown-item">Kirim File Perhitungan Biaya</a>
+                                            <a class="dropdown-item">Verifikasi</a>
+                                            @endcan
+
+                                            {{-- PENYELIA --}}
+                                            @can('penyelia')
+                                            <a class="dropdown-item">Kirim Bukti Transfer</a>
+                                            @endcan
+
+                                            {{-- BPJPH --}}
+                                            @can('bpjph')
+                                            @if ($value->status->name === "validasi")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}')">
+                                                Validasi
+                                            </button>
+                                            @endif
+                                            <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}')">
+                                                Buat Tagihan
+                                            </a>
+                                            <a class="dropdown-item">Cek Perhitungan Biaya</a>
+                                            <a class="dropdown-item">Kirim STTD</a>
+                                            <a class="dropdown-item">Kirim Sertifikat</a>
+                                            @endcan
+
+
+                                            {{-- MUI --}}
+                                            @can('mui')
+                                            @if ($value->status->name === "sidang fatwa")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}')">
+                                                Verifikasi Hasil Fatwa</button>
+                                            @endif
+                                            @endcan
+
+                                            {{-- ETC --}}
+                                            @can('penyelia')
+                                            @if ($value->status->name !== "selesai")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 12)">
+                                                Batalkan
+                                            </button>
+                                            @endif
+                                            @endcan
+
+                                            @can('auditor')
+                                            @if ($value->status->name === "lunas")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 12)">
+                                                Batalkan
+                                            </button>
+                                            @endif
+                                            @endcan
                                         </div>
                                     </div>
                                 </td>
@@ -181,4 +253,61 @@
         </div>
     </div>
 </div>
+<!-- Modal Aksi -->
+<div class="modal fade" id="actionModal" tabindex="-1" aria-labelledby="actionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="actionModalLabel">
+                    <i class="fa fa-angle-left mt-1 mr-2" style="cursor: pointer" data-bs-dismiss="modal"></i>
+                    <span id="status_name" class="text-capitalize"></span>
+                </h5>
+            </div>
+            <form action="{{ url('/updateStatus') }}" method="POST">
+                <div class="modal-body">
+                    <div class="row p-2">
+                        <div id="notes-parent" class="form-group col-12">
+                            <label for="notes">Catatan</label>
+                            <textarea id="notes" name="notes" rows="5" placeholder="Masukkan catatan..."
+                                class="form-control form-control-user"></textarea>
+                        </div>
+                        <div id="file-parent" class="form-group col-12">
+                            <label for="file">File</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="file_input" />
+                                <label class="custom-file-label" for="file_input" name="file_input">Pilih File</label>
+                            </div>
+                            <input id="file_type" type="hidden" name="file_type">
+                        </div>
+                        <h5 class="text-center col-12 mb-0">Apakah Anda Yakin?</h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    @csrf
+                    <input id="id_sertif" type="hidden" name="id" value="{{$value->id}}">
+                    <input id="status_sertif" type="hidden" name="status" value="3">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function openModal(id, status_id, status_name, custom_status = false){
+        // hide all
+        //$('#notes').hide(id)
+        //$('#file').hide(id)
+
+
+        $('#status_name').text(status_name)
+        $('#id_sertif').val(id)
+        if (custom_status){
+            $('#status_sertif').val(custom_status)
+        }else{
+            $('#status_sertif').val(parseInt(status_id)+1)
+        }
+
+    }
+</script>
 @endsection

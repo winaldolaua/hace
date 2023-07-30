@@ -29,6 +29,7 @@ class UserLoginController extends Controller
         } else {
             $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%' . $current_search . '%')->paginate(10)->withQueryString();
         }
+        //dd($sertification);
         return view('user-login.sertifikasi', [
             "title" => "sertifikasi",
             "active" => 'sertifikasi',
@@ -36,6 +37,10 @@ class UserLoginController extends Controller
             "data" => $sertification,
             "request" => $request
         ]);
+    }
+    public function updateStatusSertif(Request $request){
+        Sertification::where('id', $request->id)->update(['status_id' => $request->status]);
+        return redirect()->back();
     }
     public function addSertif()
     {

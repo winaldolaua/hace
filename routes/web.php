@@ -29,6 +29,7 @@ Route::controller(UserLoginController::class)->group(function () {
         Route::get('/', 'beranda');
         Route::get('/sertifikasi', 'sertifikasi');
         Route::get('/sertifikasi/add', 'addSertif');
+        Route::post('/updateStatus', 'updateStatusSertif');
     });
 });
 Route::controller(RegisterController::class)->group(function () {

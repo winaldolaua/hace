@@ -26,7 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Gate::define('admin',fn(User $user) => $user->role->name === 'admin');
+        Gate::define('bpjph',fn(User $user) => $user->role->name === 'bpjph');
+        Gate::define('penyelia',fn(User $user) => $user->role->name === 'penyelia');
+        Gate::define('auditor',fn(User $user) => $user->role->name === 'auditor');
+        Gate::define('mui',fn(User $user) => $user->role->name === 'mui');
         Paginator::useBootstrap();
     }
 }
