@@ -21,4 +21,20 @@ class Sertification extends Model
     {
         return $this->hasMany(Document::class);
     }
+    public function legalist()
+    {
+        return $this->hasMany(Legalist::class);
+    }
+    public function factory()
+    {
+        return $this->hasMany(Factory::class);
+    }
+    public function outlet()
+    {
+        return $this->hasMany(Outlet::class);
+    }
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

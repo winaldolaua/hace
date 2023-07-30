@@ -90,8 +90,8 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             {{-- ALL --}}
-                                            <a class="dropdown-item" href="#">Detail</a>
-
+                                            <a class="dropdown-item"
+                                                href="{{url('sertifikasi/detail/'.$value->id_number)}}">Detail</a>
                                             {{-- AUDITOR --}}
                                             @can('auditor')
                                             @if ($value->status->name === "verifikasi")

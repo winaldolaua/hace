@@ -11,4 +11,8 @@ class Product extends Model
     protected $guarded = [
         'id'
     ];
+    public function sertification()
+    {
+        return $this->belongsTo(Sertification::class);
+    }
 }
