@@ -1,4 +1,9 @@
 @extends('layout.main') @section('container')
+@if (session()->has('success'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ session("success") }}
+</div>
+@endif
 <div class="m-5">
     <h1><b>Sertifikasi Mandiri</b></h1>
 </div>
@@ -339,7 +344,7 @@
     </div>
 </div>
 <script>
-    function openModal(id, status_id, status_name,type = "confirm", custom_status = false, file_type = false){
+    function openModal(id, status_id, status_name, type = "confirm", custom_status = false, file_type = false) {
         // hide all
         $('#notes-parent').hide()
         $('#file-parent').hide()
@@ -347,16 +352,16 @@
         $('#number-parent').hide()
 
         $(`#${type}-parent`).show()
-        if(type === 'file'){
+        if (type === 'file') {
             $('#file_type').val(file_type)
         }
 
         $('#status_name').text(status_name)
         $('#id_sertif').val(id)
-        if (custom_status){
+        if (custom_status) {
             $('#status_sertif').val(custom_status)
-        }else{
-            $('#status_sertif').val(parseInt(status_id)+1)
+        } else {
+            $('#status_sertif').val(parseInt(status_id) + 1)
         }
 
     }
