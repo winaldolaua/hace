@@ -104,12 +104,12 @@
                                             @if ($value->status->name === "lunas")
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'notes', 12)">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'notes', 11)">
                                                 Batalkan
                                             </button>
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}','notes', 11)">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}','notes', 10)">
                                                 Kembalikan
                                             </button>
                                             @endif
@@ -125,15 +125,23 @@
                                             </button>
                                             @endif
                                             @if ($value->status->name === "selesai")
-                                            <a class="dropdown-item">Unduh Sertifikat</a> {{-- download --}}
+                                            <a class="dropdown-item"
+                                                href="{{ asset('storage/sertifikat').'/'.$value->document->firstWhere('type' , 'sertifikat' )->name}}"
+                                                download>
+                                                Unduh Sertifikat
+                                            </a>
                                             @endif
                                             @if ($value->status->name === "lunas")
-                                            <a class="dropdown-item">Unduh STTD</a> {{-- download --}}
+                                            <a class="dropdown-item"
+                                                href="{{ asset('storage/sttd').'/'.$value->document->firstWhere('type' , 'sttd' )->name}}"
+                                                download>
+                                                Unduh STTD
+                                            </a>
                                             @endif
                                             @if ($value->status->name !== "selesai")
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'confirm', 12)">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'confirm', 11)">
                                                 Batalkan
                                             </button>
                                             @endif
@@ -149,7 +157,7 @@
                                             </button>
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}','notes', 11)">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}','notes', 10)">
                                                 Kembalikan
                                             </button>
                                             @endif
@@ -158,8 +166,12 @@
                                                 data-bs-target="#actionModal"
                                                 onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'number')">
                                                 Buat Tagihan
-                                            </button> {{-- input angka --}}
-                                            <button class="dropdown-item">Cek Perhitungan Biaya</button>
+                                            </button>
+                                            <a class="dropdown-item"
+                                                href="{{ asset('storage/perhitungan_biaya').'/'.$value->document->firstWhere('type' , 'perhitungan_biaya' )->name}}"
+                                                download>
+                                                Unduh Perhitungan Biaya
+                                            </a>
                                             {{-- download --}}
                                             @endif
                                             @if ($value->status->name === "validasi transaksi")
