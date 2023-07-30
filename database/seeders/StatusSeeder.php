@@ -16,12 +16,8 @@ class StatusSeeder extends Seeder
     {
         $status = collect([
             [
-                'name' => 'terkirim', // penyelia kirim
-                'color' => 'primary'
-            ],
-            [
                 'name' => 'validasi', //bpjph nge cek => lanjut / dikembalikan -> klik tombol
-                'color' => 'warning'
+                'color' => 'info'
             ],
             [
                 'name' => 'verifikasi', // offline -> auditor hitung biaya -> ngirim file

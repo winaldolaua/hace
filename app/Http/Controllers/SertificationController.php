@@ -128,19 +128,23 @@ class SertificationController extends Controller
     public function updateStatusSertif(Request $request){
         $file = $request->file('file_input');
         $notes = $request->input('notes');
+        $number = $request->input('number');
         $update = ['status_id' => $request->status];
         if(isset($file)){
-            $filetype = $request->file('file_type');
+            $filetype = $request->input('file_type');
             $filename = "file-" . Str::random(3) . "-" . $file->getClientOriginalName();
-            $file->storePubliclyAs('sttd', $filename, "public");
+            $file->storePubliclyAs($filetype, $filename, "public");
             Document::create([
                 "name" => $filename,
-                "type" => "sttd"
+                "type" => $filetype
             ]);
         }
         //dd($notes);
         if(isset($notes)){
             $update = array_merge($update, ['notes' => $notes]);
+        }
+        if(isset($number)){
+            $update = array_merge($update, ['bills' => $number]);
         }
         Sertification::where('id', $request->id)->update($update);
         return redirect()->back();
