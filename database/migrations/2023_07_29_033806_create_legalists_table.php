@@ -15,6 +15,7 @@ class CreateLegalistsTable extends Migration
     {
         Schema::create('legalists', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sertification_id');
             $table->string('number');
             $table->string('date');
             $table->string('type');

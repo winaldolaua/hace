@@ -16,11 +16,11 @@ class CreateSertificationsTable extends Migration
         Schema::create('sertifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('responsibler_id');
-            $table->foreignId('factory_id');
-            $table->foreignId('outlet_id');
-            $table->foreignId('halalist_id')->nullable();
-            $table->foreignId('legalist_id');
-            $table->foreignId('product_id');
+            // $table->foreignId('factory_id');
+            // $table->foreignId('outlet_id');
+            // $table->foreignId('halalist_id')->nullable();
+            // $table->foreignId('legalist_id');
+            // $table->foreignId('product_id');
             $table->foreignId('register_id')->nullable();
             $table->foreignId('status_id');
             $table->string('id_number');
@@ -32,6 +32,7 @@ class CreateSertificationsTable extends Migration
             $table->string('doc_type');
             $table->string('product_type');
             $table->string('install_area');
+            $table->integer('bills');
             $table->string('notes')->nullable();
             $table->timestamps();
         });
