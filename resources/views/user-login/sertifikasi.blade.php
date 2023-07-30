@@ -20,7 +20,7 @@
                         <a class="nav-link text-capitalize {{
                                 $request->status === $value->name ? 'active text-success border-top-0 border-right-0 border-left-0 border-bottom-success border-bottom-1' : 'text-secondary'
                             }}" aria-current="page"
-                            href="{{ $request->fullUrlWithoutQuery(['status', 'search']).'?status='.$value->name }}">
+                            href="{{ $request->fullUrlWithoutQuery(['status', 'search', 'page']).'?status='.$value->name }}">
                             <small>{{$value->name}}</small>
                         </a>
                     </li>
@@ -71,11 +71,25 @@
                                         {{$value->status->name}}
                                     </span>
                                 </td>
-                                <td> </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-info dropdown-toggle"
+                                            data-toggle="dropdown" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        {{-- BPJPH --}}
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">Validasi</a>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="px-2">
+                    {{ $data->links() }}
                 </div>
             </div>
         </div>

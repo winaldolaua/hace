@@ -22,9 +22,9 @@ class UserLoginController extends Controller
         $status = Status::all();
 
         if (isset($current_status)) {
-            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%'.$current_search.'%')->whereRelation('status', 'name', $current_status)->get();
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%'.$current_search.'%')->whereRelation('status', 'name', $current_status)->paginate(10)->withQueryString();
         } else {
-            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%'.$current_search.'%')->get();
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%'.$current_search.'%')->paginate(10)->withQueryString();
         }
         return view('user-login.sertifikasi',[
             "title" => "sertifikasi",
