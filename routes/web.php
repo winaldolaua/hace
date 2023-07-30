@@ -27,9 +27,6 @@ Route::controller(LoginController::class)->group(function () {
 Route::controller(UserLoginController::class)->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/', 'beranda');
-        Route::get('/sertifikasi', 'sertifikasi');
-        Route::get('/sertifikasi/add', 'addSertif');
-        Route::post('/updateStatus', 'updateStatusSertif');
     });
 });
 Route::controller(RegisterController::class)->group(function () {
@@ -40,6 +37,10 @@ Route::controller(RegisterController::class)->group(function () {
 });
 Route::controller(SertificationController::class)->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::post('/sertification/add', 'addSertif')->name('add-sertif');
+        Route::get('/sertifikasi', 'sertifikasi');
+        Route::get('/sertifikasi/add', 'addSertif');
+
+        Route::post('/sertification/add', 'addSertifPost')->name('add-sertif');
+        Route::post('/updateStatus', 'updateStatusSertif')->name('update-status-sertif');
     });
 });

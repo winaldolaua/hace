@@ -250,7 +250,7 @@
                 <div class="card-body py-2 px-3">
                     <div class="mb-2 d-flex flex-column">
                         <span>Nama</span>
-                        <b>xxxxxxx</b>
+                        <b>Awanama</b>
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <span>Alamat</span>
@@ -258,11 +258,11 @@
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <span>Jenis Usaha</span>
-                        <b>xxxxxxx</b>
+                        <b>Cilok</b>
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <span>Skala Usaha</span>
-                        <b>xxxxxxx</b>
+                        <b>UMKM</b>
                     </div>
                 </div>
             </div>

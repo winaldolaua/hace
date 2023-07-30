@@ -6,8 +6,14 @@
     integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
 </script>
 <script>
+    $('input[type="file"]').on('change',function(){
+        var fileName = $(this).val().split('\\');
+        fileName = fileName[fileName.length-1]
+        $(this).next('.custom-file-label').html(fileName);
+    })
     function updateName(allParents){
         for (let i = 0; i < allParents.length; i++) {
+            console.log(i)
             const element = allParents[i];
             const parentInputs = $(element).find('input, select')
             for (let j = 0; j < parentInputs.length; j++) {
@@ -18,8 +24,6 @@
         }
     }
     $('.dynamic-element-add').on( "click", function(ev) {
-        //console.log(ev.parents())
-        //$( "#target" ).trigger( "click" );
         const parent = $(ev.target).parents('.dynamic-element-parent')
         const name = parent.data('name')
         const clone = parent.clone(true, true)
@@ -29,16 +33,13 @@
             const element = inputs[i];
             $(element).val('')
         }
-        const allParents = $(`.dynamic-element-parent[data-name="${name}"]`)
         btnDel.show()
         clone.insertAfter(parent)
+        const allParents = $(`.dynamic-element-parent[data-name="${name}"]`)
 
         updateName(allParents)
     } );
     $('.dynamic-element-delete').on( "click", function(ev) {
-        //console.log(ev.parents())
-        //$( "#target" ).trigger( "click" );
-        console.log(ev)
         const parent = $(ev.target).parents('.dynamic-element-parent')
         console.log(parent)
         parent.remove()

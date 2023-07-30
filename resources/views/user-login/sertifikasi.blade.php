@@ -52,6 +52,7 @@
                                 <th>Jenis Pengajuan</th>
                                 <th>Tipe Produk</th>
                                 <th>Status</th>
+                                <th>Catatan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -71,6 +72,7 @@
                                         {{$value->status->name}}
                                     </span>
                                 </td>
+                                <td>{{$value->notes ? $value->notes : '-'}}</td>
                                 <td>
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info dropdown-toggle"
@@ -82,24 +84,48 @@
                                             <a class="dropdown-item" href="#">Detail</a>
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 11)">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}','notes', 11)">
                                                 Kembalikan
                                             </button>
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 12)">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}','confirm', 12)">
                                                 Batalkan
                                             </button>
 
                                             {{-- AUDITOR --}}
                                             @can('auditor')
-                                            <a class="dropdown-item">Kirim File Perhitungan Biaya</a>
-                                            <a class="dropdown-item">Verifikasi</a>
+                                            @if ($value->status->name === "verifikasi")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'file', 'perhitungan biaya')">
+                                                Kirim File Perhitungan Biaya
+                                            </button>
+                                            @endif
+                                            @if ($value->status->name === "lunas")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'confirm')">
+                                                Verifikasi
+                                            </button>
+                                            @endif
                                             @endcan
 
                                             {{-- PENYELIA --}}
                                             @can('penyelia')
-                                            <a class="dropdown-item">Kirim Bukti Transfer</a>
+                                            @if ($value->status->name === "belum lunas")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'file', 'bukti transfer')">
+                                                Kirim Bukti Transfer
+                                            </button>
+                                            @endif
+                                            @if ($value->status->name === "selesai")
+                                            <a class="dropdown-item">Unduh Sertifikat</a> {{-- download --}}
+                                            @endif
+                                            @if ($value->status->name === "lunas")
+                                            <a class="dropdown-item">Unduh STTD</a> {{-- download --}}
+                                            @endif
                                             @endcan
 
                                             {{-- BPJPH --}}
@@ -107,18 +133,30 @@
                                             @if ($value->status->name === "validasi")
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}')">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'confirm')">
                                                 Validasi
                                             </button>
                                             @endif
                                             <a class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}')">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'num')">
                                                 Buat Tagihan
-                                            </a>
-                                            <a class="dropdown-item">Cek Perhitungan Biaya</a>
-                                            <a class="dropdown-item">Kirim STTD</a>
-                                            <a class="dropdown-item">Kirim Sertifikat</a>
+                                            </a> {{-- input angka --}}
+                                            <a class="dropdown-item">Cek Perhitungan Biaya</a> {{-- download --}}
+                                            @if ($value->status->name === "validasi transaksi")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'file', 'bukti transfer')">
+                                                Kirim STTD
+                                            </button>
+                                            @endif
+                                            @if ($value->status->name === "lulus sidang")
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'file', 'bukti transfer')">
+                                                Kirim Sertifikat
+                                            </button>
+                                            @endif
                                             @endcan
 
 
@@ -127,7 +165,7 @@
                                             @if ($value->status->name === "sidang fatwa")
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}')">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'confirm')">
                                                 Verifikasi Hasil Fatwa</button>
                                             @endif
                                             @endcan
@@ -137,7 +175,7 @@
                                             @if ($value->status->name !== "selesai")
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 12)">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}' 'confirm', '{{$value->status->name}}', 12)">
                                                 Batalkan
                                             </button>
                                             @endif
@@ -147,7 +185,7 @@
                                             @if ($value->status->name === "lunas")
                                             <button class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 12)">
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}' 'notes', '{{$value->status->name}}', 12)">
                                                 Batalkan
                                             </button>
                                             @endif
@@ -263,7 +301,7 @@
                     <span id="status_name" class="text-capitalize"></span>
                 </h5>
             </div>
-            <form action="{{ url('/updateStatus') }}" method="POST">
+            <form action="{{ url('/updateStatus') }}" enctype="multipart/form-data" method="POST">
                 <div class="modal-body">
                     <div class="row p-2">
                         <div id="notes-parent" class="form-group col-12">
@@ -274,12 +312,12 @@
                         <div id="file-parent" class="form-group col-12">
                             <label for="file">File</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="file_input" />
-                                <label class="custom-file-label" for="file_input" name="file_input">Pilih File</label>
+                                <input type="file" class="custom-file-input" name="file_input" id="file_input" />
+                                <label class="custom-file-label" for="file_input">Pilih File</label>
                             </div>
                             <input id="file_type" type="hidden" name="file_type">
                         </div>
-                        <h5 class="text-center col-12 mb-0">Apakah Anda Yakin?</h5>
+                        <h5 id="text-parent" class="text-center col-12 mb-0">Apakah Anda Yakin?</h5>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -294,11 +332,20 @@
     </div>
 </div>
 <script>
-    function openModal(id, status_id, status_name, custom_status = false){
+    function openModal(id, status_id, status_name,type = "confirm", custom_status = false, file_type = false){
         // hide all
-        //$('#notes').hide(id)
-        //$('#file').hide(id)
+        $('#notes-parent').hide()
+        $('#file-parent').hide()
+        $('#text-parent').hide()
 
+        if(type === 'confirm'){
+            $('#text-parent').show()
+        }else if(type === 'file'){
+            $('#file-parent').show()
+            $('#file_type').val(file_type)
+        }else if(type === 'notes'){
+            $('#notes-parent').show()
+        }
 
         $('#status_name').text(status_name)
         $('#id_sertif').val(id)

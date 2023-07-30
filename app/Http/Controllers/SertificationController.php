@@ -8,15 +8,17 @@ use App\Models\Outlet;
 use App\Models\Product;
 use App\Models\Responsibler;
 use App\Models\Sertification;
+use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
+use App\Models\Status;
 
 class SertificationController extends Controller
 {
-    public function addSertif(Request $request)
+    public function addSertifPost(Request $request)
     {
         $list_file = ['surat-permohonan', 'formulir-pendaftaran', 'aspek-legal', 'penyelia-halal', 'daftar-produk', 'proses-pengolahan', 'jaminan-halal', 'salinan-sertif', 'lainnya'];
         foreach ($list_file as $index => $value) {
@@ -91,5 +93,92 @@ class SertificationController extends Controller
         } catch (QueryException $error) {
             dd($error);
         }
+    }
+
+    public function sertifikasi(Request $request)
+    {
+        $current_status =  $request->query('status');
+        $current_search =  $request->query('search');
+        $status = Status::all();
+
+        if (isset($current_status)) {
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%' . $current_search . '%')->whereRelation('status', 'name', $current_status)->paginate(10)->withQueryString();
+        } else {
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%' . $current_search . '%')->paginate(10)->withQueryString();
+        }
+        //dd($sertification);
+        return view('user-login.sertifikasi', [
+            "title" => "sertifikasi",
+            "active" => 'sertifikasi',
+            "status" => $status,
+            "data" => $sertification,
+            "request" => $request
+        ]);
+    }
+    public function updateStatusSertif(Request $request){
+        $file = $request->file('file_input');
+        $notes = $request->input('notes');
+        $update = ['status_id' => $request->status];
+        if(isset($file)){
+            $filetype = $request->file('file_type');
+            $filename = "file-" . Str::random(3) . "-" . $file->getClientOriginalName();
+            $file->storePubliclyAs('sttd', $filename, "public");
+            Document::create([
+                "name" => $filename,
+                "type" => "sttd"
+            ]);
+        }
+        //dd($notes);
+        if(isset($notes)){
+            $update = array_merge($update, ['notes' => $notes]);
+        }
+        Sertification::where('id', $request->id)->update($update);
+        return redirect()->back();
+    }
+    public function addSertif()
+    {
+        $list_file = collect([
+            [
+                "name" => "surat-permohonan",
+                "title" => 'Surat Permohonan'
+            ],
+            [
+                "name" => "formulir-pendaftaran",
+                "title" => 'Formulir Pendaftaran'
+            ],
+            [
+                "name" => "aspek-legal",
+                "title" => 'Aspek Legal'
+            ],
+            [
+                "name" => "penyelia-halal",
+                "title" => 'Dokumen Penyelia Halal '
+            ],
+            [
+                "name" => "daftar-produk",
+                "title" => 'Daftar Nama Produk dan Bahan/Menu/Barang'
+            ],
+            [
+                "name" => "proses-pengolahan",
+                "title" => 'Proses Pengolahan Produk'
+            ],
+            [
+                "name" => "jaminan-halal",
+                "title" => 'Sistem Jaminan Halal'
+            ],
+            [
+                "name" => "salinan-sertif",
+                "title" => 'Salinan Sertifikat Halal (Bagi Pembaruan)'
+            ],
+            [
+                "name" => "lainnya",
+                "title" => 'Lainnya'
+            ],
+        ]);
+        return view('user-login.add-sertifikasi', [
+            "title" => "Tambah Sertifikasi",
+            "active" => 'sertifikasi',
+            "list_file" => $list_file,
+        ]);
     }
 }
