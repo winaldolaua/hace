@@ -4,7 +4,6 @@ use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\SertificationController;
 use App\Models\Sertification;
@@ -28,6 +27,7 @@ Route::controller(LoginController::class)->group(function () {
 Route::controller(UserLoginController::class)->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/', 'beranda');
+        Route::get('/help', 'help');
     });
 });
 Route::controller(RegisterController::class)->group(function () {

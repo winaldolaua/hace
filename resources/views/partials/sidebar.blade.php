@@ -26,7 +26,7 @@
     </li>
     <hr class="sidebar-divider" />
     <li class="nav-item {{ $title === 'help' ? 'active' : '' }}">
-        <a class="nav-link {{ $title === 'help' ? 'active' : '' }}" href="{{ url('/sertifikasi') }}/">
+        <a class="nav-link {{ $title === 'help' ? 'active' : '' }}" href="{{ url('/help') }}/">
             <i class="fas fa-info"></i>
             <span>Bantuan</span>
         </a>

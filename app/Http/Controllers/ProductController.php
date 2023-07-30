@@ -19,7 +19,7 @@ class ProductController extends Controller
             $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%' . $current_search . '%')->where('status_id', 9)->paginate(10)->withQueryString();
         } else $sertification = Sertification::with(['status', 'responsibler'])->where('status_id', 9)->paginate(10)->withQueryString();
         return view('user-login.product.index', [
-            "title" => "Product",
+            "title" => "product",
             "active" => "product",
             "request" => $request,
             "data" => $sertification
