@@ -15,11 +15,11 @@ class CreateFactoriesTable extends Migration
     {
         Schema::create('factories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sertification_id');
             $table->string('name');
             $table->string('city');
             $table->string('country');
             $table->string('address');
-            $table->string('status');
             $table->string('region');
             $table->string('pos');
             $table->timestamps();

@@ -15,6 +15,7 @@ class CreateOutletsTable extends Migration
     {
         Schema::create('outlets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sertification_id');
             $table->string('name');
             $table->string('region');
             $table->string('pos');

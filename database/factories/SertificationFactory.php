@@ -23,6 +23,7 @@ class SertificationFactory extends Factory
             'lph' => $this->faker->lexify('lph ?????'),
             'doc_type' => $this->faker->lexify('doc type ???????'),
             'product_type' => $this->faker->lexify('product type ?????'),
+            'bills' => $this->faker->randomNumber(5),
             'install_area' => $this->faker->lexify('area ??????')
         ];
     }

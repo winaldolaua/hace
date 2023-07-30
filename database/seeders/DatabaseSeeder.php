@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
         Responsibler::factory()->count(10)->create();
         Sertification::factory()->count(10)->sequence(fn (Sequence $sequence) => [
             'responsibler_id' => $sequence->index + 1,
-            'factory_id' => $sequence->index + 1,
-            'outlet_id' => $sequence->index + 1,
-            'halalist_id' => $sequence->index + 1,
-            'legalist_id' => $sequence->index + 1,
-            'product_id' => $sequence->index + 1,
+            // 'factory_id' => $sequence->index + 1,
+            // 'outlet_id' => $sequence->index + 1,
+            // 'halalist_id' => $sequence->index + 1,
+            // 'legalist_id' => $sequence->index + 1,
+            // 'product_id' => $sequence->index + 1,
             'register_id' => $sequence->index + 1
         ])->create();
         $this->call([

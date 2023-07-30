@@ -14,9 +14,9 @@
                     <div class="row mb-5">
                         <div class="row col-6">
                             <b class="col-6 py-2">Nomor ID</b>
-                            <span class="col-6 py-2">xx</span>
+                            <span class="col-6 py-2">xxxxxxx</span>
                             <b class="col-6 py-2">Tanggal</b>
-                            <span class="col-6 py-2">04/06/2023</span>
+                            <span class="col-6 py-2">{{\Carbon\Carbon::now()->format('d M Y')}}</span>
                             <b class="col-6 py-2">Jenis Pengajuan</b>
                             <span class="col-6 py-2">Baru</span>
                         </div>
