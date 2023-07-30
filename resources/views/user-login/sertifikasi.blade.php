@@ -169,14 +169,15 @@
                                                 Kirim STTD
                                             </button>
                                             <a class="dropdown-item"
-                                                href="{{ asset('storage/file-MU4-Kartu Peserta Wisuda 190535646041.pdf') }}">
+                                                href="{{ asset('storage/bukti_transfer').'/'.$value->document->firstWhere('type' , 'bukti_transfer' )->name}}"
+                                                download>
                                                 Cek Bukti Transaksi
                                             </a>
                                             @endif
                                             @if ($value->status->name === "lulus sidang")
                                             <button class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'file', false, 'sertifikat')">
+                                                data-bs-target="#actionModal" onclick="openModal({{$value->id}}, ' {{$value->status->id}}',
+                                                '{{$value->status->name}}', 'file', false, 'sertifikat')">
                                                 Kirim Sertifikat
                                             </button>
                                             @endif
