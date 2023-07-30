@@ -20,8 +20,10 @@ class SertificationController extends Controller
 {
     public function addSertifPost(Request $request)
     {
+        $list_file = ["surat-permohonan", "formulir-pendaftaran", "aspek-legal", "penyelia-halal", "daftar-produk", "proses-pengolahan", "jaminan-halal", "salinan-sertif", "lainnya"];
+
         try {
-            DB::transaction(function () use ($request) {
+            DB::transaction(function () use ($request, $list_file) {
                 $res = Responsibler::create([
                     'name' => $request->input('responsibler-name'),
                     'email' => $request->input('responsibler-email'),
@@ -74,11 +76,23 @@ class SertificationController extends Controller
                 foreach ($request->input('product-name') as $index => $value) {
                     Product::create([
                         'sertification_id' => $certification->id,
-                        'product_name' => $request->input('outlet-name')[$index],
+                        'product_name' => $request->input('product-name')[$index],
                     ]);
                 }
-                echo "Done Ga Bang??? DOOON!";
+                foreach ($list_file as $index => $filetype) {
+                    $file = $request->file('file' . $index);
+                    if (isset($file)) {
+                        $filename = Str::random(10) . "." . $file->getClientOriginalExtension();
+                        $file->storePubliclyAs($filetype, $filename, "public");
+                        Document::create([
+                            "sertification_id" => $certification->id,
+                            "name" => $filename,
+                            "type" => $filetype
+                        ]);
+                    }
+                }
             });
+            return redirect()->to('/sertifikasi')->with('success', 'Sertifikasi Berhasil Dikirim');
         } catch (QueryException $error) {
             dd($error);
         }
@@ -111,9 +125,9 @@ class SertificationController extends Controller
         $number = $request->input('number');
         $update = ['status_id' => $request->status];
         //dd($file->getClientOriginalExtension());
-        if(isset($file)){
+        if (isset($file)) {
             $filetype = $request->input('file_type');
-            $filename = Str::random(10).".".$file->getClientOriginalExtension();
+            $filename = Str::random(10) . "." . $file->getClientOriginalExtension();
             $file->storePubliclyAs($filetype, $filename, "public");
             Document::create([
                 "sertification_id" => $request->id,
