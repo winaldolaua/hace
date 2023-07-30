@@ -17,6 +17,20 @@
             <span>Sertifikasi</span>
         </a>
     </li>
+    <hr class="sidebar-divider" />
+    <li class="nav-item {{ $title === 'product' ? 'active' : '' }}">
+        <a class="nav-link {{ $title === 'prodcut' ? 'active' : '' }}" href="{{ url('/product') }}/">
+            <i class="fas fa-box"></i>
+            <span>Product</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider" />
+    <li class="nav-item {{ $title === 'help' ? 'active' : '' }}">
+        <a class="nav-link {{ $title === 'help' ? 'active' : '' }}" href="{{ url('/sertifikasi') }}/">
+            <i class="fas fa-info"></i>
+            <span>Bantuan</span>
+        </a>
+    </li>
     <hr class="sidebar-divider d-none d-md-block" />
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

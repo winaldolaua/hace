@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -42,5 +43,10 @@ Route::controller(SertificationController::class)->group(function () {
         Route::get('/sertifikasi/detail/{id_number}', 'detilSertif');
         Route::post('/sertification/add', 'addSertifPost')->name('add-sertif');
         Route::post('/updateStatus', 'updateStatusSertif')->name('update-status-sertif');
+    });
+});
+Route::controller(ProductController::class)->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::get('/product', 'index');
     });
 });
