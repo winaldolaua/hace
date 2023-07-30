@@ -6,27 +6,30 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\Status;
 use App\Models\Sertification;
+
 class UserLoginController extends Controller
 {
-    public function beranda(){
+    public function beranda()
+    {
         if (!Auth::check()) return redirect()->route('login');
         $status = Status::all();
-        return view('user-login.beranda',[
+        return view('user-login.beranda', [
             "title" => "beranda",
             "status" => $status,
         ]);
     }
-    public function sertifikasi(Request $request){
+    public function sertifikasi(Request $request)
+    {
         $current_status =  $request->query('status');
         $current_search =  $request->query('search');
         $status = Status::all();
 
         if (isset($current_status)) {
-            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%'.$current_search.'%')->whereRelation('status', 'name', $current_status)->get();
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%' . $current_search . '%')->whereRelation('status', 'name', $current_status)->get();
         } else {
-            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%'.$current_search.'%')->get();
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%' . $current_search . '%')->get();
         }
-        return view('user-login.sertifikasi',[
+        return view('user-login.sertifikasi', [
             "title" => "sertifikasi",
             "active" => 'sertifikasi',
             "status" => $status,

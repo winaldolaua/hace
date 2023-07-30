@@ -61,7 +61,6 @@ class SertificationController extends Controller
             ]
         );
 
-        dd($data->);
         // try {
         //     DB::transaction(function () use ($data) {
         //         $res = Responsibler::insert($data['responsibler']);

@@ -21,7 +21,7 @@
                             <div class="text-xs font-weight-bold text-{{$value->color}} text-uppercase mb-1">
                                 {{$value->name}}
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$value->sertification->count()}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>

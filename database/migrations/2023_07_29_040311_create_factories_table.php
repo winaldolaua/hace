@@ -18,7 +18,7 @@ class CreateFactoriesTable extends Migration
             $table->string('name');
             $table->string('city');
             $table->string('country');
-            $table->string('adress');
+            $table->string('address');
             $table->string('status');
             $table->string('region');
             $table->string('pos');

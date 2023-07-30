@@ -10,6 +10,6 @@ class Status extends Model
     use HasFactory;
     public function sertification()
     {
-        return $this->hasOne(Sertification::class);
+        return $this->hasMany(Sertification::class);
     }
 }

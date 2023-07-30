@@ -25,6 +25,7 @@
                             <span class="col-6 py-2">Mandiri</span>
                         </div>
                     </div>
+                    <!-- Certification -->
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
                             <b>Pengajuan Sertifikasi*</b>
@@ -32,31 +33,19 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">No. Surat Permohonan</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="No. Surat
-                                Permohonan"
-                                    value="1241223"
-                                    name="pengajuan-nama"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="No. Surat
+                                Permohonan" value="{{random_int(00000,99999)}}" name="sertif-number" />
                             </div>
                             <b class="col-6 py-2">Jenis Layanan</b>
                             <div class="col-6 form-group">
-                                <select
-                                    name="pengajuan-layanan"
-                                    class="form-control form-control-user"
-                                >
+                                <select name="sertif-layanan" class="form-control form-control-user">
                                     <option value="layanan1">layanan 1</option>
                                     <option value="layanan2">layanan 2</option>
                                 </select>
                             </div>
                             <b class="col-6 py-2">Jenis Produk</b>
                             <div class="col-6 form-group">
-                                <select
-                                    name="pengajuan-jenis-product"
-                                    class="form-control form-control-user"
-                                >
+                                <select name="sertif-jenis-produk" class="form-control form-control-user">
                                     <option value="jenis-product1">
                                         jenis product 1
                                     </option>
@@ -66,24 +55,13 @@
                                 </select>
                             </div>
                             <b class="col-6 py-2">Jenis Dagang</b>
-                            <div
-                                class="col-6 form-group"
-                                class="form-control form-control-user"
-                            >
-                                <input
-                                    type="text"
-                                    class="form-control form-control-user"
-                                    placeholder="Merek Dagang"
-                                    value="Merek {{Str::random(4)}}"
-                                    name="pengajuan-merek"
-                                />
+                            <div class="col-6 form-group" class="form-control form-control-user">
+                                <input type="text" class="form-control form-control-user" placeholder="Merek Dagang"
+                                    value="Merek {{Str::random(4)}}" name="sertif-merek" />
                             </div>
                             <b class="col-6 py-2">Area Pemasaran</b>
                             <div class="col-6 form-group">
-                                <select
-                                    name="pengajuan-area"
-                                    class="form-control form-control-user"
-                                >
+                                <select name="sertif-area" class="form-control form-control-user">
                                     <option value="area-pemasaran1">
                                         area pemasaran 1
                                     </option>
@@ -94,24 +72,19 @@
                             </div>
                             <b class="col-6 py-2">LPH</b>
                             <div class="col-6 form-group">
-                                <select
-                                    name="pengajuan-lph"
-                                    class="form-control form-control-user"
-                                >
+                                <select name="sertif-lph" class="form-control form-control-user">
                                     <option value="lph1">lph 1</option>
                                     <option value="lph2">lph 2</option>
                                 </select>
                             </div>
                             <b class="col-6 py-2">Tgl Surat Permohonan</b>
                             <div class="col-6 form-group">
-                                <input
-                                    type="date"
-                                    class="form-control form-control-user"
-                                    name=" pengajuan-tgl-surat-permohonan"
-                                />
+                                <input type="date" class="form-control form-control-user"
+                                    name=" sertif-tgl-surat-permohonan" />
                             </div>
                         </div>
                     </div>
+                    <!-- Responsibler -->
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
                             <b>Penanggung Jawab*</b>
@@ -119,36 +92,22 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Nama"
-                                    value="Nama {{Str::random(10)}}"
-                                    name="penanggung-nama"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Nama"
+                                    value="Nama {{Str::random(10)}}" name="responsibler-name" />
                             </div>
                             <b class="col-6 py-2">Email</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Email"
-                                    value="{{Str::random(10)}}@gmail.com"
-                                    name="penanggung-email"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Email"
+                                    value="{{Str::random(10)}}@gmail.com" name="responsibler-email" />
                             </div>
                             <b class="col-6 py-2">No. Telpon</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="No Telepon"
-                                    value="{{Str::random(12)}}"
-                                    name="penanggung-telp"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="No Telepon"
+                                    value="{{random_int(00000000,99999999)}}" name="responsibler-telp" />
                             </div>
                         </div>
                     </div>
+                    <!-- Legal Aspect -->
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
                             <b>Aspek Legal*</b>
@@ -156,10 +115,7 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">Jenis Dokumen</b>
                             <div class="col-6 form-group">
-                                <select
-                                    name="aspek-dok"
-                                    class="form-control form-control-user"
-                                >
+                                <select name="aspect-doc" class="form-control form-control-user">
                                     <option value="jenis-dokumen1">
                                         jenis dokumen 1
                                     </option>
@@ -170,31 +126,18 @@
                             </div>
                             <b class="col-6 py-2">No. Dokumen</b>
                             <div class="col-6 form-group">
-                                <input
-                                    type="text"
-                                    placeholder="No. Dokumen"
-                                    value="{{Str::random(10)}}"
-                                    class="form-control form-control-user"
-                                    name="aspek-no-dok"
-                                />
+                                <input type="text" placeholder="No. Dokumen" value="{{random_int(000,999)}}"
+                                    class="form-control form-control-user" name="aspect-doc-number" />
                             </div>
                             <b class="col-6 py-2">Tanggal Dokumen</b>
                             <div class="col-6 form-group">
-                                <input
-                                    type="date"
-                                    name="aspek-date"
-                                    class="form-control form-control-user"
-                                />
+                                <input type="date" name="aspect-date" class="form-control form-control-user" />
                             </div>
                             <b class="col-6 py-2">Instansi Penerbit</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Instansi Penerbit"
-                                    value="penerbit {{Str::random(5)}}"
-                                    name="aspek-instansi"
-                                />
+                                <input class="form-control form-control-user" type="text"
+                                    placeholder="Instansi Penerbit" value="penerbit {{Str::random(5)}}"
+                                    name="aspect-agency" />
                             </div>
                         </div>
                     </div>
@@ -205,10 +148,7 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">Jenis Dokumen</b>
                             <div class="col-6 form-group">
-                                <select
-                                    name="aspek-dok"
-                                    class="form-control form-control-user"
-                                >
+                                <select name="aspek-dok" class="form-control form-control-user">
                                     <option value="jenis-dokumen1">
                                         jenis dokumen 1
                                     </option>
@@ -219,34 +159,22 @@
                             </div>
                             <b class="col-6 py-2">No. Dokumen</b>
                             <div class="col-6 form-group">
-                                <input
-                                    type="text"
-                                    placeholder="No. Dokumen"
-                                    value="{{Str::random(10)}}"
-                                    class="form-control form-control-user"
-                                    name="aspek-no-dok"
-                                />
+                                <input type="text" placeholder="No. Dokumen" value="{{Str::random(10)}}"
+                                    class="form-control form-control-user" name="aspek-no-dok" />
                             </div>
                             <b class="col-6 py-2">Tanggal Dokumen</b>
                             <div class="col-6 form-group">
-                                <input
-                                    type="date"
-                                    name="aspek-date"
-                                    class="form-control form-control-user"
-                                />
+                                <input type="date" name="aspek-date" class="form-control form-control-user" />
                             </div>
                             <b class="col-6 py-2">Instansi Penerbit</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Instansi Penerbit"
-                                    value="penerbit {{Str::random(5)}}"
-                                    name="aspek-instansi"
-                                />
+                                <input class="form-control form-control-user" type="text"
+                                    placeholder="Instansi Penerbit" value="penerbit {{Str::random(5)}}"
+                                    name="aspek-instansi" />
                             </div>
                         </div>
                     </div>
+                    <!-- Factory -->
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
                             <b>Pabrik*</b>
@@ -254,66 +182,37 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama Pabrik</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Nama"
-                                    value="Pabrik {{Str::random(10)}}"
-                                    name="pabrik-nama"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Nama"
+                                    value="Pabrik {{Str::random(10)}}" name="factory-name" />
                             </div>
                             <b class="col-6 py-2">Alamat</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Alamat"
-                                    value="Alamat {{Str::random(10)}}"
-                                    name="pabrik-alamat"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Alamat"
+                                    value="Alamat {{Str::random(10)}}" name="factory-address" />
                             </div>
                             <b class="col-6 py-2">Kab/Kota</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Kab/Kota"
-                                    value="kab/kota {{Str::random(10)}}"
-                                    name="pabrik-kab"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Kab/Kota"
+                                    value="kab/kota {{Str::random(10)}}" name="factory-city" />
                             </div>
                             <b class="col-6 py-2">Negara</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Negara"
-                                    value="Negara {{Str::random(10)}}"
-                                    name="pabrik-negara"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Negara"
+                                    value="Negara {{Str::random(10)}}" name="factory-country" />
                             </div>
                             <b class="col-6 py-2">Provinsi</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Provinsi"
-                                    value="Provinsi {{Str::random(10)}}"
-                                    name="pabrik-prov"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Provinsi"
+                                    value="Provinsi {{Str::random(10)}}" name="factory-region" />
                             </div>
                             <b class="col-6 py-2">Kode Pos</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Kode Pos"
-                                    value="kode pos {{Str::random(4)}}"
-                                    name="pabrik-pos"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Kode Pos"
+                                    value="kode pos {{Str::random(4)}}" name="factory-pos" />
                             </div>
                         </div>
                     </div>
+                    <!-- outlet -->
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
                             <b>Outlet*</b>
@@ -321,53 +220,28 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama Outlet</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Nama"
-                                    value="Outlet {{Str::random(10)}}"
-                                    name="outlet-nama"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Nama"
+                                    value="Outlet {{Str::random(10)}}" name="outlet-name" />
                             </div>
                             <b class="col-6 py-2">Alamat</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Alamat"
-                                    value="Alamat {{Str::random(10)}}"
-                                    name="outlet-alamat"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Alamat"
+                                    value="Alamat {{Str::random(10)}}" name="outlet-address" />
                             </div>
                             <b class="col-6 py-2">Kab/Kota</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Kab/Kota"
-                                    value="Kab/kota {{Str::random(10)}}"
-                                    name="outlet-kab"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Kab/Kota"
+                                    value="Kab/kota {{Str::random(10)}}" name="outlet-city" />
                             </div>
                             <b class="col-6 py-2">Provinsi</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Provinsi"
-                                    value="Prov {{Str::random(10)}}"
-                                    name="outlet-prov"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Provinsi"
+                                    value="Prov {{Str::random(10)}}" name="outlet-region" />
                             </div>
                             <b class="col-6 py-2">Negara</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Negara"
-                                    value="Negara {{Str::random(10)}}"
-                                    name="outlet-negara"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Negara"
+                                    value="Negara {{Str::random(10)}}" name="outlet-country" />
                             </div>
                         </div>
                     </div>
@@ -378,13 +252,8 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama Produk</b>
                             <div class="col-6 form-group">
-                                <input
-                                    class="form-control form-control-user"
-                                    type="text"
-                                    placeholder="Nama"
-                                    value="Produk.{{Str::random(10)}}"
-                                    name="produk-nama"
-                                />
+                                <input class="form-control form-control-user" type="text" placeholder="Nama"
+                                    value="Produk.{{Str::random(10)}}" name="produk-nama" />
                             </div>
                         </div>
                     </div>
@@ -436,17 +305,9 @@
                             </p>
                             <div class="input-group mb-3 col-6">
                                 <div class="custom-file">
-                                    <input
-                                        type="file"
-                                        class="custom-file-input"
-                                        id="{{ $value['name'] }}"
-                                    />
-                                    <label
-                                        class="custom-file-label"
-                                        for="{{ $value['name'] }}"
-                                        aria-describedby="inputGroupFileAddon02"
-                                        >Pilih File</label
-                                    >
+                                    <input type="file" class="custom-file-input" id="{{ $value['name'] }}" />
+                                    <label class="custom-file-label" for="{{ $value['name'] }}"
+                                        aria-describedby="inputGroupFileAddon02">Pilih File</label>
                                 </div>
                             </div>
                         </li>
