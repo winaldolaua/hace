@@ -15,6 +15,7 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sertification_id');
             $table->string('name', 255);
             $table->string('type');
             $table->timestamps();

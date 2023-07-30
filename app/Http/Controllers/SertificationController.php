@@ -20,23 +20,7 @@ class SertificationController extends Controller
 {
     public function addSertifPost(Request $request)
     {
-        // $list_file = ['surat-permohonan', 'formulir-pendaftaran', 'aspek-legal', 'penyelia-halal', 'daftar-produk', 'proses-pengolahan', 'jaminan-halal', 'salinan-sertif', 'lainnya'];
-        // foreach ($list_file as $index => $value) {
-        //     // $file->put($value, $request->file('file' . $index));
-        //     $file = $request->file('file' . $index);
-        //     $file->storePubliclyAs($value, "file-" . Str::random(3) . "-" . $file->getClientOriginalName(), "public");
-        // }
-        $legalist = collect([]);
-        $factory = collect([]);
-        $outlet = collect([]);
-        $product = collect([]);
-        foreach ($request->all() as $index => $value) {
-            if (Str::contains($index, 'aspect-')) $legalist->put($index, $value);
-            else if (Str::contains($index, 'factory-')) $factory->put($index, $value);
-            else if (Str::contains($index, 'outlet-')) $outlet->put($index, $value);
-            else if (Str::contains($index, 'product-')) $product->put($index, $value);
-            else "not";
-        }
+        // dd($request->input('aspect-date')[0]);
         $data = collect(
             [
                 'legal' => [
@@ -68,7 +52,7 @@ class SertificationController extends Controller
         );
 
         try {
-            DB::transaction(function () use ($request, $legalist) {
+            DB::transaction(function () use ($request) {
                 $res = Responsibler::create([
                     'name' => $request->input('responsibler-name'),
                     'email' => $request->input('responsibler-email'),
@@ -87,17 +71,15 @@ class SertificationController extends Controller
                     'product_type' => $request->input('sertif-jenis-produk'),
                     'install_area' => $request->input('sertif-area')
                 ]);
-                // foreach($legalist as $index => $legal){
-                //      = Legalist::crate([
-
-                //     ]);
-                // }
-                // $fac = Factory::create($data['factory']);
-                // $outlet = Outlet::create($data['outlet']);
-                // $product = Product::create($data['product']);
-                // $data['certification']->put('product_id', $legal->id);
-                // Sertification::create($certif);
-                // $certif = $data['certification']->toArray();
+                foreach ($request->input('aspect-doc') as $index => $value) {
+                    Legalist::create([
+                        'sertification_id' => $certification->id,
+                        'number' =>  $request->input('aspect-doc-number')[$index],
+                        'date' => $request->input('aspect-date')[$index] ?? Carbon::now(),
+                        'type' => $request->input('aspect-doc')[$index],
+                        'agency_name' => $request->input('aspect-agency')[$index]
+                    ]);
+                }
                 echo "Done Ga Bang??? DOOON!";
             });
         } catch (QueryException $error) {

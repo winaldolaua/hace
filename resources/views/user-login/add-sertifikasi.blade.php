@@ -26,7 +26,6 @@
                         </div>
                     </div>
                     <!-- Certification -->
-                    <hr class="mb-5" />
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
                             <b>Pengajuan Sertifikasi*</b>
@@ -86,7 +85,6 @@
                         </div>
                     </div>
                     <!-- Responsibler -->
-                    <hr class="mb-5" />
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
                             <b>Penanggung Jawab*</b>
@@ -110,16 +108,15 @@
                         </div>
                     </div>
                     <!-- Legal Aspect -->
-                    <hr class="mb-5" />
                     <div class="row mb-5 dynamic-element-parent" data-name="legal-aspect">
                         <h6 class="text-danger col-12">
                             <b>Aspek Legal*</b>
-                            <span></span>
                         </h6>
                         <div class="row col-12">
                             <b class="col-6 py-2">Jenis Dokumen</b>
                             <div class="col-6 form-group">
-                                <select data-name="aspect-doc" class="form-control form-control-user">
+                                <select data-name="aspect-doc" name="aspect-doc[]"
+                                    class="form-control form-control-user">
                                     <option value="jenis-dokumen1">
                                         jenis dokumen 1
                                     </option>
@@ -131,17 +128,19 @@
                             <b class="col-6 py-2">No. Dokumen</b>
                             <div class="col-6 form-group">
                                 <input type="text" placeholder="No. Dokumen" value="{{random_int(000,999)}}"
-                                    class="form-control form-control-user" data-name="aspect-doc-number" />
+                                    class="form-control form-control-user" data-name="aspect-doc-number"
+                                    name="aspect-doc-number[]" />
                             </div>
                             <b class="col-6 py-2">Tanggal Dokumen</b>
                             <div class="col-6 form-group">
-                                <input type="date" data-name="aspect-date" class="form-control form-control-user" />
+                                <input type="date" data-name="aspect-date" name="aspect-date[]"
+                                    class="form-control form-control-user" />
                             </div>
                             <b class="col-6 py-2">Instansi Penerbit</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text"
                                     placeholder="Instansi Penerbit" value="penerbit {{Str::random(5)}}"
-                                    data-name="aspect-agency" />
+                                    data-name="aspect-agency" name="aspect-agency[]" />
                             </div>
 
                             <div class="col-12 d-flex justify-content-end">
@@ -152,42 +151,40 @@
                         </div>
                     </div>
                     <!-- Factory -->
-                    <hr class="mb-5" />
                     <div class="row mb-5 dynamic-element-parent" data-name="factory">
                         <h6 class="text-danger col-12">
                             <b>Pabrik*</b>
-                            <span></span>
                         </h6>
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama Pabrik</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Nama"
-                                    value="Pabrik {{Str::random(10)}}" data-name="factory-name" />
+                                    value="Pabrik {{Str::random(10)}}" name="factory-name" />
                             </div>
                             <b class="col-6 py-2">Alamat</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Alamat"
-                                    value="Alamat {{Str::random(10)}}" data-name="factory-address" />
+                                    value="Alamat {{Str::random(10)}}" name="factory-address" />
                             </div>
                             <b class="col-6 py-2">Kab/Kota</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Kab/Kota"
-                                    value="kab/kota {{Str::random(10)}}" data-name="factory-city" />
+                                    value="kab/kota {{Str::random(10)}}" name="factory-city" />
                             </div>
                             <b class="col-6 py-2">Negara</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Negara"
-                                    value="Negara {{Str::random(10)}}" data-name="factory-country" />
+                                    value="Negara {{Str::random(10)}}" name="factory-country" />
                             </div>
                             <b class="col-6 py-2">Provinsi</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Provinsi"
-                                    value="Provinsi {{Str::random(10)}}" data-name="factory-region" />
+                                    value="Provinsi {{Str::random(10)}}" name="factory-region" />
                             </div>
                             <b class="col-6 py-2">Kode Pos</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Kode Pos"
-                                    value="kode pos {{Str::random(4)}}" data-name="factory-pos" />
+                                    value="kode pos {{Str::random(4)}}" name="factory-pos" />
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
@@ -197,37 +194,35 @@
                         </div>
                     </div>
                     <!-- outlet -->
-                    <hr class="mb-5" />
                     <div class="row mb-5 dynamic-element-parent" data-name="outlet">
                         <h6 class="text-danger col-12">
                             <b>Outlet*</b>
-                            <span></span>
                         </h6>
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama Outlet</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Nama"
-                                    value="Outlet {{Str::random(10)}}" data-name="outlet-name" />
+                                    value="Outlet {{Str::random(10)}}" name="outlet-name" />
                             </div>
                             <b class="col-6 py-2">Alamat</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Alamat"
-                                    value="Alamat {{Str::random(10)}}" data-name="outlet-address" />
+                                    value="Alamat {{Str::random(10)}}" name="outlet-address" />
                             </div>
                             <b class="col-6 py-2">Kab/Kota</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Kab/Kota"
-                                    value="Kab/kota {{Str::random(10)}}" data-name="outlet-city" />
+                                    value="Kab/kota {{Str::random(10)}}" name="outlet-city" />
                             </div>
                             <b class="col-6 py-2">Provinsi</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Provinsi"
-                                    value="Prov {{Str::random(10)}}" data-name="outlet-region" />
+                                    value="Prov {{Str::random(10)}}" name="outlet-region" />
                             </div>
                             <b class="col-6 py-2">Negara</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Negara"
-                                    value="Negara {{Str::random(10)}}" data-name="outlet-country" />
+                                    value="Negara {{Str::random(10)}}" name="outlet-country" />
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
@@ -237,17 +232,15 @@
                         </div>
                     </div>
                     <!-- Product -->
-                    <hr class="mb-5" />
-                    <div class="row mb-5 dynamic-element-parent" data-name="product">
+                    <div class="row mb-5 dynamic-element-parent" data-name="outlet">
                         <h6 class="text-danger col-12">
                             <b>Nama Produk*</b>
-                            <span></span>
                         </h6>
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama Produk</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Nama"
-                                    value="Produk.{{Str::random(10)}}" data-name="product-name" />
+                                    value="Produk.{{Str::random(10)}}" name="product-name" />
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
@@ -272,7 +265,7 @@
                 <div class="card-body py-2 px-3">
                     <div class="mb-2 d-flex flex-column">
                         <span>Nama</span>
-                        <b>Awanama</b>
+                        <b>xxxxxxx</b>
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <span>Alamat</span>
@@ -280,11 +273,11 @@
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <span>Jenis Usaha</span>
-                        <b>Cilok</b>
+                        <b>xxxxxxx</b>
                     </div>
                     <div class="mb-2 d-flex flex-column">
                         <span>Skala Usaha</span>
-                        <b>UMKM</b>
+                        <b>xxxxxxx</b>
                     </div>
                 </div>
             </div>
