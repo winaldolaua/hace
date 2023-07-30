@@ -110,11 +110,13 @@ class SertificationController extends Controller
         $notes = $request->input('notes');
         $number = $request->input('number');
         $update = ['status_id' => $request->status];
-        if (isset($file)) {
+        //dd($file->getClientOriginalExtension());
+        if(isset($file)){
             $filetype = $request->input('file_type');
-            $filename = "file-" . Str::random(3) . "-" . $file->getClientOriginalName();
+            $filename = Str::random(10).".".$file->getClientOriginalExtension();
             $file->storePubliclyAs($filetype, $filename, "public");
             Document::create([
+                "sertification_id" => $request->id,
                 "name" => $filename,
                 "type" => $filetype
             ]);

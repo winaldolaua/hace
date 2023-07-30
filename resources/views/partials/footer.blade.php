@@ -4,8 +4,13 @@
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
-    </script>
+</script>
 <script>
+    $('input[type="file"]').on('change',function(){
+        var fileName = $(this).val().split('\\');
+        fileName = fileName[fileName.length-1]
+        $(this).next('.custom-file-label').html(fileName);
+    })
     function updateName(allParents) {
         for (let i = 0; i < allParents.length; i++) {
             const element = allParents[i];
