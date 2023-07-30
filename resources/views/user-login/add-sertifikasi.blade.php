@@ -108,14 +108,15 @@
                         </div>
                     </div>
                     <!-- Legal Aspect -->
-                    <div class="row mb-5">
+                    <div class="row mb-5 dynamic-element-parent" data-name="legal-aspect">
                         <h6 class="text-danger col-12">
                             <b>Aspek Legal*</b>
                         </h6>
                         <div class="row col-12">
                             <b class="col-6 py-2">Jenis Dokumen</b>
                             <div class="col-6 form-group">
-                                <select name="aspect-doc" class="form-control form-control-user">
+                                <select data-name="aspect-doc" name="aspect-doc-0"
+                                    class="form-control form-control-user">
                                     <option value="jenis-dokumen1">
                                         jenis dokumen 1
                                     </option>
@@ -127,50 +128,25 @@
                             <b class="col-6 py-2">No. Dokumen</b>
                             <div class="col-6 form-group">
                                 <input type="text" placeholder="No. Dokumen" value="{{random_int(000,999)}}"
-                                    class="form-control form-control-user" name="aspect-doc-number" />
+                                    class="form-control form-control-user" data-name="aspect-doc-number"
+                                    name="aspect-doc-number-0" />
                             </div>
                             <b class="col-6 py-2">Tanggal Dokumen</b>
                             <div class="col-6 form-group">
-                                <input type="date" name="aspect-date" class="form-control form-control-user" />
+                                <input type="date" data-name="aspect-date" name="aspect-date-0"
+                                    class="form-control form-control-user" />
                             </div>
                             <b class="col-6 py-2">Instansi Penerbit</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text"
                                     placeholder="Instansi Penerbit" value="penerbit {{Str::random(5)}}"
-                                    name="aspect-agency" />
+                                    data-name="aspect-agency" name="aspect-agency-0" />
                             </div>
-                        </div>
-                    </div>
-                    <div class="row mb-5">
-                        <h6 class="text-danger col-12">
-                            <b>Aspek Legal*</b>
-                        </h6>
-                        <div class="row col-12">
-                            <b class="col-6 py-2">Jenis Dokumen</b>
-                            <div class="col-6 form-group">
-                                <select name="aspek-dok" class="form-control form-control-user">
-                                    <option value="jenis-dokumen1">
-                                        jenis dokumen 1
-                                    </option>
-                                    <option value="jenis-dokumen2">
-                                        jenis dokumen 2
-                                    </option>
-                                </select>
-                            </div>
-                            <b class="col-6 py-2">No. Dokumen</b>
-                            <div class="col-6 form-group">
-                                <input type="text" placeholder="No. Dokumen" value="{{Str::random(10)}}"
-                                    class="form-control form-control-user" name="aspek-no-dok" />
-                            </div>
-                            <b class="col-6 py-2">Tanggal Dokumen</b>
-                            <div class="col-6 form-group">
-                                <input type="date" name="aspek-date" class="form-control form-control-user" />
-                            </div>
-                            <b class="col-6 py-2">Instansi Penerbit</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text"
-                                    placeholder="Instansi Penerbit" value="penerbit {{Str::random(5)}}"
-                                    name="aspek-instansi" />
+
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
+                                    style="display: none">Hapus</button>
+                                <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
                             </div>
                         </div>
                     </div>
@@ -321,4 +297,5 @@
         </div>
     </form>
 </div>
+
 @endsection
