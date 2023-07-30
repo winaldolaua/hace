@@ -159,32 +159,32 @@
                             <b class="col-6 py-2">Nama Pabrik</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Nama"
-                                    value="Pabrik {{Str::random(10)}}" name="factory-name" />
+                                    value="Pabrik {{Str::random(10)}}" name="factory-name[]" />
                             </div>
                             <b class="col-6 py-2">Alamat</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Alamat"
-                                    value="Alamat {{Str::random(10)}}" name="factory-address" />
+                                    value="Alamat {{Str::random(10)}}" name="factory-address[]" />
                             </div>
                             <b class="col-6 py-2">Kab/Kota</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Kab/Kota"
-                                    value="kab/kota {{Str::random(10)}}" name="factory-city" />
+                                    value="kab/kota {{Str::random(10)}}" name="factory-city[]" />
                             </div>
                             <b class="col-6 py-2">Negara</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Negara"
-                                    value="Negara {{Str::random(10)}}" name="factory-country" />
+                                    value="Negara {{Str::random(10)}}" name="factory-country[]" />
                             </div>
                             <b class="col-6 py-2">Provinsi</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Provinsi"
-                                    value="Provinsi {{Str::random(10)}}" name="factory-region" />
+                                    value="Provinsi {{Str::random(10)}}" name="factory-region[]" />
                             </div>
                             <b class="col-6 py-2">Kode Pos</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Kode Pos"
-                                    value="kode pos {{Str::random(4)}}" name="factory-pos" />
+                                    value="kode pos {{Str::random(4)}}" name="factory-pos[]" />
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
@@ -202,27 +202,27 @@
                             <b class="col-6 py-2">Nama Outlet</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Nama"
-                                    value="Outlet {{Str::random(10)}}" name="outlet-name" />
+                                    value="Outlet {{Str::random(10)}}" name="outlet-name[]" />
                             </div>
                             <b class="col-6 py-2">Alamat</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Alamat"
-                                    value="Alamat {{Str::random(10)}}" name="outlet-address" />
+                                    value="Alamat {{Str::random(10)}}" name="outlet-address[]" />
                             </div>
                             <b class="col-6 py-2">Kab/Kota</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Kab/Kota"
-                                    value="Kab/kota {{Str::random(10)}}" name="outlet-city" />
+                                    value="Kab/kota {{Str::random(10)}}" name="outlet-city[]" />
                             </div>
                             <b class="col-6 py-2">Provinsi</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Provinsi"
-                                    value="Prov {{Str::random(10)}}" name="outlet-region" />
+                                    value="Prov {{Str::random(10)}}" name="outlet-region[]" />
                             </div>
                             <b class="col-6 py-2">Negara</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Negara"
-                                    value="Negara {{Str::random(10)}}" name="outlet-country" />
+                                    value="Negara {{Str::random(10)}}" name="outlet-country[]" />
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
@@ -240,7 +240,7 @@
                             <b class="col-6 py-2">Nama Produk</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Nama"
-                                    value="Produk.{{Str::random(10)}}" name="product-name" />
+                                    value="Produk.{{Str::random(10)}}" name="product-name[]" />
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
