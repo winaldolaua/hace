@@ -20,37 +20,6 @@ class SertificationController extends Controller
 {
     public function addSertifPost(Request $request)
     {
-        // dd($request->input('aspect-date')[0]);
-        $data = collect(
-            [
-                'legal' => [
-                    'number' =>  $request->input('aspect-doc-number'),
-                    'date' => Carbon::now(),
-                    'type' => $request->input('aspect-doc'),
-                    'agency_name' => $request->input('aspect-agency')
-                ],
-                'factory' => [
-                    'name' => $request->input('factory-name'),
-                    'city' => $request->input('factory-city'),
-                    'country' => $request->input('factory-country'),
-                    'address' => $request->input('factory-address'),
-                    'region' => $request->input('factory-region'),
-                    'pos' => $request->input('factory-pos')
-                ],
-                'outlet' => [
-                    'name' => $request->input('outlet-name'),
-                    'region' => $request->input('outlet-region'),
-                    'pos' => 'gada',
-                    'address' => $request->input('outlet-address'),
-                    'city' => $request->input('outlet-city'),
-                    'country' => $request->input('outlet-country')
-                ],
-                'product' => [
-                    'product_name' => $request->input('product-name')
-                ]
-            ]
-        );
-
         try {
             DB::transaction(function () use ($request) {
                 $res = Responsibler::create([
@@ -80,6 +49,34 @@ class SertificationController extends Controller
                         'agency_name' => $request->input('aspect-agency')[$index]
                     ]);
                 }
+                foreach ($request->input('factory-name') as $index => $value) {
+                    Factory::create([
+                        'sertification_id' => $certification->id,
+                        'name' => $request->input('factory-name')[$index],
+                        'city' => $request->input('factory-city')[$index],
+                        'country' => $request->input('factory-country')[$index],
+                        'address' => $request->input('factory-address')[$index],
+                        'region' => $request->input('factory-region')[$index],
+                        'pos' => $request->input('factory-pos')[$index]
+                    ]);
+                }
+                foreach ($request->input('outlet-name') as $index => $value) {
+                    Outlet::create([
+                        'sertification_id' => $certification->id,
+                        'name' => $request->input('outlet-name')[$index],
+                        'region' => $request->input('outlet-region')[$index],
+                        'pos' => 'gada',
+                        'address' => $request->input('outlet-address')[$index],
+                        'city' => $request->input('outlet-city')[$index],
+                        'country' => $request->input('outlet-country')[$index]
+                    ]);
+                }
+                foreach ($request->input('product-name') as $index => $value) {
+                    Product::create([
+                        'sertification_id' => $certification->id,
+                        'product_name' => $request->input('outlet-name')[$index],
+                    ]);
+                }
                 echo "Done Ga Bang??? DOOON!";
             });
         } catch (QueryException $error) {
@@ -107,12 +104,13 @@ class SertificationController extends Controller
             "request" => $request
         ]);
     }
-    public function updateStatusSertif(Request $request){
+    public function updateStatusSertif(Request $request)
+    {
         $file = $request->file('file_input');
         $notes = $request->input('notes');
         $number = $request->input('number');
         $update = ['status_id' => $request->status];
-        if(isset($file)){
+        if (isset($file)) {
             $filetype = $request->input('file_type');
             $filename = "file-" . Str::random(3) . "-" . $file->getClientOriginalName();
             $file->storePubliclyAs($filetype, $filename, "public");
@@ -122,10 +120,10 @@ class SertificationController extends Controller
             ]);
         }
         //dd($notes);
-        if(isset($notes)){
+        if (isset($notes)) {
             $update = array_merge($update, ['notes' => $notes]);
         }
-        if(isset($number)){
+        if (isset($number)) {
             $update = array_merge($update, ['bills' => $number]);
         }
         Sertification::where('id', $request->id)->update($update);
