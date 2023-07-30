@@ -32,7 +32,7 @@ class CreateSertificationsTable extends Migration
             $table->string('doc_type');
             $table->string('product_type');
             $table->string('install_area');
-            $table->integer('bills');
+            $table->integer('bills')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();
         });

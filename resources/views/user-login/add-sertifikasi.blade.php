@@ -115,7 +115,7 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">Jenis Dokumen</b>
                             <div class="col-6 form-group">
-                                <select data-name="aspect-doc" name="aspect-doc-0"
+                                <select data-name="aspect-doc" name="aspect-doc[]"
                                     class="form-control form-control-user">
                                     <option value="jenis-dokumen1">
                                         jenis dokumen 1
@@ -129,18 +129,18 @@
                             <div class="col-6 form-group">
                                 <input type="text" placeholder="No. Dokumen" value="{{random_int(000,999)}}"
                                     class="form-control form-control-user" data-name="aspect-doc-number"
-                                    name="aspect-doc-number-0" />
+                                    name="aspect-doc-number[]" />
                             </div>
                             <b class="col-6 py-2">Tanggal Dokumen</b>
                             <div class="col-6 form-group">
-                                <input type="date" data-name="aspect-date" name="aspect-date-0"
+                                <input type="date" data-name="aspect-date" name="aspect-date[]"
                                     class="form-control form-control-user" />
                             </div>
                             <b class="col-6 py-2">Instansi Penerbit</b>
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text"
                                     placeholder="Instansi Penerbit" value="penerbit {{Str::random(5)}}"
-                                    data-name="aspect-agency" name="aspect-agency-0" />
+                                    data-name="aspect-agency" name="aspect-agency[]" />
                             </div>
 
                             <div class="col-12 d-flex justify-content-end">
@@ -151,7 +151,7 @@
                         </div>
                     </div>
                     <!-- Factory -->
-                    <div class="row mb-5">
+                    <div class="row mb-5 dynamic-element-parent" data-name="factory">
                         <h6 class="text-danger col-12">
                             <b>Pabrik*</b>
                         </h6>
@@ -186,10 +186,15 @@
                                 <input class="form-control form-control-user" type="text" placeholder="Kode Pos"
                                     value="kode pos {{Str::random(4)}}" name="factory-pos" />
                             </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
+                                    style="display: none">Hapus</button>
+                                <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
+                            </div>
                         </div>
                     </div>
                     <!-- outlet -->
-                    <div class="row mb-5">
+                    <div class="row mb-5 dynamic-element-parent" data-name="outlet">
                         <h6 class="text-danger col-12">
                             <b>Outlet*</b>
                         </h6>
@@ -219,10 +224,15 @@
                                 <input class="form-control form-control-user" type="text" placeholder="Negara"
                                     value="Negara {{Str::random(10)}}" name="outlet-country" />
                             </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
+                                    style="display: none">Hapus</button>
+                                <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
+                            </div>
                         </div>
                     </div>
                     <!-- Product -->
-                    <div class="row mb-5">
+                    <div class="row mb-5 dynamic-element-parent" data-name="outlet">
                         <h6 class="text-danger col-12">
                             <b>Nama Produk*</b>
                         </h6>
@@ -231,6 +241,11 @@
                             <div class="col-6 form-group">
                                 <input class="form-control form-control-user" type="text" placeholder="Nama"
                                     value="Produk.{{Str::random(10)}}" name="product-name" />
+                            </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
+                                    style="display: none">Hapus</button>
+                                <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
                             </div>
                         </div>
                     </div>

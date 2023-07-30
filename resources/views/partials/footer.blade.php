@@ -33,7 +33,7 @@
         clone.insertAfter(parent)
         const allParents = $(`.dynamic-element-parent[data-name="${name}"]`)
 
-        updateName(allParents)
+        // updateName(allParents)
     });
     $('.dynamic-element-delete').on("click", function (ev) {
         //console.log(ev.parents())
