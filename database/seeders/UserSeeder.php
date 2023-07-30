@@ -13,29 +13,33 @@ class UserSeeder extends Seeder
     {
         $users = collect([
             'admin' => collect([
-                'name' => 'Admin',
-                'email' => 'admin@gmail.com'
+                'name' => 'BPJPH',
+                'email' => 'bpjph@gmail.com',
+                'role' => 1
             ]),
             'penyelia' => collect([
                 'name' => 'Penyelia 1',
-                'email' => 'penyelia@gmail.com'
+                'email' => 'penyelia@gmail.com',
+                'role' => 2
             ]),
             'auditor' => collect([
                 'name' => 'Auditor 1',
-                'email' => 'auditor@gmail.com'
+                'email' => 'auditor@gmail.com',
+                'role' => 3
             ]),
             'verifikator' => collect([
-                'name' => 'Verifikator 1',
-                'email' => 'verifikator@gmail.com'
+                'name' => 'MUI',
+                'email' => 'mui@gmail.com',
+                'role' => 4
             ])
         ]);
         foreach ($users as $key => $user) {
-            if($key === 'admin') $role_id = 1;
-            else if($key === 'penyelia') $role_id = 2;
-            else if($key === 'auditor') $role_id = 3;
-            else $role_id = 4;
+            //if($key === 'admin') $role_id = 1;
+            //else if($key === 'penyelia') $role_id = 2;
+            //else if($key === 'auditor') $role_id = 3;
+            //else $role_id = 4;
             User::create([
-                'role_id' => $role_id,
+                'role_id' => $user['role'],
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'password' => Hash::make('xxxxx')

@@ -11,7 +11,7 @@
         </a>
     </li>
     <hr class="sidebar-divider" />
-    @can('admin')
+    @can('bpjph')
     <li class="nav-item {{ $title === '' ? 'active' : '' }}">
         <a class="nav-link" href="/kelus">
             <i class="fas fa-fw fa-table"></i>
@@ -26,14 +26,12 @@
             <span>Sertifikasi</span>
         </a>
     </li>
-    <li class="nav-item {{ $title === '' ? 'active' : '' }}">
-        @can('admin')
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Bantuan</span>
-        </a>
-        @endcan
-    </li>
+    {{--<li class="nav-item {{ $title === '' ? 'active' : '' }}">
+    <a class="nav-link" href="tables.html">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Bantuan</span>
+    </a>
+    </li>--}}
     <hr class="sidebar-divider d-none d-md-block" />
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

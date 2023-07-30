@@ -75,11 +75,37 @@
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-info dropdown-toggle"
                                             data-toggle="dropdown" aria-expanded="false">
-                                            Action
+                                            Aksi
                                         </button>
-                                        {{-- BPJPH --}}
                                         <div class="dropdown-menu">
+                                            {{-- ALL --}}
+                                            <a class="dropdown-item" href="#">Detail</a>
+
+                                            {{-- AUDITOR --}}
+                                            @can('auditor')
+                                            <a class="dropdown-item" href="#">Kirim File Perhitungan Biaya</a>
+                                            <a class="dropdown-item" href="#">Verifikasi</a>
+                                            @endcan
+
+                                            {{-- PENYELIA --}}
+                                            @can('penyelia')
+                                            <a class="dropdown-item" href="#">Kirim Bukti Transfer</a>
+                                            @endcan
+
+                                            {{-- BPJPH --}}
+                                            @can('bpjph')
                                             <a class="dropdown-item" href="#">Validasi</a>
+                                            <a class="dropdown-item" href="#">Buat Tagihan</a>
+                                            <a class="dropdown-item" href="#">Cek Perhitungan Biaya</a>
+                                            <a class="dropdown-item" href="#">Kirim STTD</a>
+                                            <a class="dropdown-item" href="#">Kirim Sertifikat</a>
+                                            @endcan
+
+
+                                            {{-- MUI --}}
+                                            @can('mui')
+                                            <a class="dropdown-item" href="#">Verifikasi Hasil Fatwa</a>
+                                            @endcan
                                         </div>
                                     </div>
                                 </td>
