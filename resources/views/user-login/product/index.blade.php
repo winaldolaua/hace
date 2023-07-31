@@ -5,32 +5,12 @@
 </div>
 @endif
 <div class="m-5">
-    <h1><b>Sertifikasi Mandiri</b></h1>
+    <h1><b>Product</b></h1>
 </div>
 <div class="row mx-4">
     <div class="col-12">
         <div class="card shadow mb-5">
             <div class="card-body p-2">
-                <ul class="nav nav-tabs row ml-1">
-                    <li class="nav-item">
-                        <a class="nav-link {{
-                                $request->status
-                                    ? 'text-secondary'
-                                    : 'active text-success border-top-0 border-right-0 border-left-0 border-bottom-success border-bottom-1'
-                            }}" aria-current="page" href="/sertifikasi"><small>Semua</small>
-                        </a>
-                    </li>
-                    @foreach ($status as $st => $value)
-                    <li class="nav-item">
-                        <a class="nav-link text-capitalize {{
-                                $request->status === $value->name ? 'active text-success border-top-0 border-right-0 border-left-0 border-bottom-success border-bottom-1' : 'text-secondary'
-                            }}" aria-current="page"
-                            href="{{ $request->fullUrlWithoutQuery(['status', 'search', 'page']).'?status='.$value->name }}">
-                            <small>{{$value->name}}</small>
-                        </a>
-                    </li>
-                    @endforeach
-                </ul>
                 <div class="row my-4 mx-2">
                     <div class="col-9">
                         <form action="{{ $request->url() }}" method="GET">
@@ -209,16 +189,6 @@
                                                 data-bs-target="#actionModal"
                                                 onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'confirm')">
                                                 Verifikasi Hasil Fatwa</button>
-                                            <button class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}','notes', 10)">
-                                                Kembalikan
-                                            </button>
-                                            <button class="dropdown-item" data-bs-toggle="modal"
-                                                data-bs-target="#actionModal"
-                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'notes', 11)">
-                                                Batalkan
-                                            </button>
                                             @endif
                                             @endcan
                                         </div>
@@ -358,7 +328,7 @@
                 </div>
                 <div class="modal-footer">
                     @csrf
-                    <input id="id_sertif" type="hidden" name="id" value="{{$value->id}}">
+                    <input id="id_sertif" type="hidden" name="id">
                     <input id="status_sertif" type="hidden" name="status" value="3">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Submit</button>

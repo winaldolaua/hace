@@ -18,4 +18,11 @@ class UserLoginController extends Controller
             "status" => $status,
         ]);
     }
+    public function help()
+    {
+        return view('users.help', [
+            "title" => "help",
+            "active" => 'help',
+        ]);
+    }
 }

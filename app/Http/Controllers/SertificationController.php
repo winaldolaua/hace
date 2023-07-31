@@ -191,4 +191,14 @@ class SertificationController extends Controller
             "list_file" => $list_file,
         ]);
     }
+    public function detilSertif($id_number)
+    {
+        // $data = Sertification::where("id_number", $id_number)->first();
+        // dd($data, $data->factory);
+        return view('user-login.detail', [
+            "title" => "Detail Sertifikasi",
+            "active" => "sertifikasi",
+            "data" => Sertification::where("id_number", $id_number)->first()
+        ]);
+    }
 }

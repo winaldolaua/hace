@@ -9,4 +9,8 @@ class Outlet extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    public function sertification()
+    {
+        return $this->belongsTo(Sertification::class);
+    }
 }

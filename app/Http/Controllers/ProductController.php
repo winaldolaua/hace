@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Sertification;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,9 +13,17 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if (isset($current_search)) {
+            $sertification = Sertification::with(['status', 'responsibler'])->where('product_type', 'like', '%' . $current_search . '%')->where('status_id', 9)->paginate(10)->withQueryString();
+        } else $sertification = Sertification::with(['status', 'responsibler'])->where('status_id', 9)->paginate(10)->withQueryString();
+        return view('user-login.product.index', [
+            "title" => "product",
+            "active" => "product",
+            "request" => $request,
+            "data" => $sertification
+        ]);
     }
 
     /**
