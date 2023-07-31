@@ -209,6 +209,16 @@
                                                 data-bs-target="#actionModal"
                                                 onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'confirm')">
                                                 Verifikasi Hasil Fatwa</button>
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}','notes', 10)">
+                                                Kembalikan
+                                            </button>
+                                            <button class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#actionModal"
+                                                onclick="openModal({{$value->id}}, '{{$value->status->id}}', '{{$value->status->name}}', 'notes', 11)">
+                                                Batalkan
+                                            </button>
                                             @endif
                                             @endcan
                                         </div>
