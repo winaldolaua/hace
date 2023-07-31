@@ -25,7 +25,7 @@ class Sertification extends Model
     {
         return $this->hasMany(Legalist::class);
     }
-    public function factory()
+    public function factories()
     {
         return $this->hasMany(Factory::class);
     }
