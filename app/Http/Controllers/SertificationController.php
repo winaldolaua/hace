@@ -20,7 +20,27 @@ class SertificationController extends Controller
 {
     public function addSertifPost(Request $request)
     {
-        $list_file = ["surat-permohonan", "formulir-pendaftaran", "aspek-legal", "penyelia-halal", "daftar-produk", "proses-pengolahan", "jaminan-halal", "salinan-sertif", "lainnya"];
+        $list_file = ["nib", "surat-permohonan", "formulir-pendaftaran", "aspek-legal", "penyelia-halal", "daftar-produk", "proses-pengolahan", "jaminan-halal", "salinan-sertif", "lainnya"];
+
+        // $validated = $request->validate([
+        //     'title' => 'required|unique:posts|max:255',
+        //     'body' => 'required',
+        // ]);
+        // $validate_sertif = $request->validate([
+        //     // sertif
+        //     'sertif-number' => 'required|size:13',
+        //     'sertif-layanan' => 'required',
+        //     'sertif-jenis-product' => 'required',
+        //     'sertif-merek' => 'required',
+        //     'sertif-area' => 'required',
+        //     'sertif-lph' => 'required',
+        //     'sertif-tgl-surat-permohonan' => 'required',
+        //     // responsibler
+        //     'responsibler-name' => 'required|min:3',
+        //     'responsibler-email' => 'required|email:dns',
+        //     'responsibler-telp' => 'required|min:11|numeric'
+        //     // 
+        // ]);
 
         try {
             DB::transaction(function () use ($request, $list_file) {
@@ -147,7 +167,13 @@ class SertificationController extends Controller
     }
     public function addSertif()
     {
+        // dd(now());
+
         $list_file = collect([
+            [
+                "name" => "NIB",
+                "title" => 'nib'
+            ],
             [
                 "name" => "surat-permohonan",
                 "title" => 'Surat Permohonan'
@@ -185,10 +211,25 @@ class SertificationController extends Controller
                 "title" => 'Lainnya'
             ],
         ]);
+        $list_product = collect([
+            'Susu dan analognya',
+            'Lemak, minyak, dan emulsi minyak',
+            'Buah dan sayur dengan pengolahan dan penambahan bahan tambahan pangan',
+            'Kembang gula/permen dan cokelat',
+            'Serealia dan produk serealia yang merupakan produk turunan dari biji serealia, akardan umbi, kacang-kacangan dan empulur',
+            'Produk bakteri',
+            'Ikan dan produk perikanan, termasuk moluska, krustase, dan ekinodermata dengan pengloahan dan penambahan bahan ',
+            'Telur olahan dan produk-produk telur hasil olahan',
+            'Gula dan pemanis termasuk madu',
+            'Garam, rempah, sup, saus, salad, serta produk protein',
+            'Makanan ringan siap santap',
+            'Penyediaan makanan dan minuman dengan pengolahan',
+        ]);
         return view('user-login.add-sertifikasi', [
             "title" => "Tambah Sertifikasi",
             "active" => 'sertifikasi',
             "list_file" => $list_file,
+            "list_product" => $list_product,
         ]);
     }
     public function detilSertif($id_number)

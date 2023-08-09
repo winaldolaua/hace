@@ -2,8 +2,8 @@
 <div class="m-5">
     <h1><b>Tambah Sertifikasi</b></h1>
 </div>
-<div class="row mx-4">
-    <form action="{{ route('add-sertif') }}" method="post" enctype="multipart/form-data" class="row col-12">
+<form action="{{ route('add-sertif') }}" method="post" enctype="multipart/form-data" class="row col-12">
+    <div class="row mx-4">
         @csrf
         <div class="col-8">
             <div class="card shadow mb-5">
@@ -25,6 +25,12 @@
                             <span class="col-6 py-2">Mandiri</span>
                         </div>
                     </div>
+                    {{-- Data Pelaku Usaha --}}
+                    <div class="row mb-5">
+                        <h6 class="text-danger col-12">
+                            <b>Data Pelaku Usaha*</b>
+                        </h6>
+                    </div>
                     <!-- Certification -->
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
@@ -33,54 +39,105 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">No. Surat Permohonan</b>
                             <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="No. Surat
-                                Permohonan" value="" name="sertif-number" />
+                                <input
+                                    class="form-control form-control-user @error('sertif-number') is-invalid @enderror"
+                                    type="text" placeholder="No. Surat
+                                Permohonan" value="{{old('sertif-number')}}" name="sertif-number" />
+                                @error('sertif-number')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                             <b class="col-6 py-2">Jenis Layanan</b>
                             <div class="col-6 form-group">
-                                <select name="sertif-layanan" class="form-control form-control-user">
-                                    <option value="layanan1">layanan 1</option>
-                                    <option value="layanan2">layanan 2</option>
+                                <select name="sertif-layanan" class="form-control form-control-user
+                                    @error('sertif-layanan') is-invalid @enderror">
+                                    <option value="makanan" {{old('sertif-layanan')=='makanan' ? 'selected' : '' }}>
+                                        Makanan</option>
+                                    <option value="minuman" {{old('sertif-layanan')=='minuman' ? 'selected' : '' }}>
+                                        Minuman</option>
                                 </select>
+                                @error('sertif-layanan')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                             <b class="col-6 py-2">Jenis Produk</b>
                             <div class="col-6 form-group">
-                                <select name="sertif-jenis-produk" class="form-control form-control-user">
-                                    <option value="jenis-product1">
-                                        jenis product 1
+                                <select name="sertif-jenis-produk"
+                                    class="form-control form-control-user @error('sertif-jenis-produk') is-invalid @enderror"
+                                    style="overflow-x: auto;" value="{{old('sertif-jenis-produk')}}">
+                                    @foreach($list_product as $value)
+                                    <option value="{{Str::slug($value)}}"
+                                        {{old('sertif-jenis-produk')==Str::slug($value) ? 'selected' : '' }}>
+                                        {{$value}}
                                     </option>
-                                    <option value="jenis-product2">
-                                        jenis product 2
-                                    </option>
+                                    @endforeach
                                 </select>
+                                @error('sertif-jenis-produk')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                             <b class="col-6 py-2">Jenis Dagang</b>
                             <div class="col-6 form-group" class="form-control form-control-user">
-                                <input type="text" class="form-control form-control-user" placeholder="Merek Dagang"
-                                    value="" name="sertif-merek" />
+                                {{-- <input type="text" class="form-control form-control-user"
+                                    placeholder="Merek Dagang" value="" name="sertif-merek" /> --}}
+                                <textarea id="" cols="20" rows="5" type=" text"
+                                    class="form-control form-control-user @error('sertif-merek') is-invalid @enderror"
+                                    placeholder="Merek Dagang" name="sertif-merek">{{old('sertif-merek')}}</textarea>
+                                @error('sertif-merek')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
-                            <b class="col-6 py-2">Area Pemasaran</b>
+                            <b class=" col-6 py-2">Area Pemasaran</b>
                             <div class="col-6 form-group">
-                                <select name="sertif-area" class="form-control form-control-user">
+                                <select name="sertif-area"
+                                    class="form-control @error('sertif-area') is-invalid @enderror form-control-user"
+                                    value="{{old('sertif-area')}}">
                                     <option value="area-pemasaran1">
                                         area pemasaran 1
                                     </option>
                                     <option value="area-pemasaran2">
                                         area pemasaran 2
                                     </option>
+                                    @error('sertif-area')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </select>
+
                             </div>
                             <b class="col-6 py-2">LPH</b>
                             <div class="col-6 form-group">
-                                <select name="sertif-lph" class="form-control form-control-user">
+                                <select name="sertif-lph" value="{{old('sertif-lph')}}"
+                                    class="form-control @error('sertif-lph') is-invalid @enderror form-control-user">
                                     <option value="lph1">lph 1</option>
                                     <option value="lph2">lph 2</option>
                                 </select>
+                                @error('sertif-lph')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                             <b class="col-6 py-2">Tgl Surat Permohonan</b>
                             <div class="col-6 form-group">
-                                <input type="date" class="form-control form-control-user"
-                                    name=" sertif-tgl-surat-permohonan" />
+                                <input type="date"
+                                    class="form-control form-control-user @error('sertif-tgl-surat-permohonan') is-invalid @enderror"
+                                    name="sertif-tgl-surat-permohonan"
+                                    value="{{old('sertif-tgl-surat-permohonan') ? old('sertif-tgl-surat-permohonan') : now()->format('Y-m-d')}}" />
+                                @error('sertif-tgl-surat-permohonan')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -92,18 +149,39 @@
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama</b>
                             <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Nama" value=""
+                                <input
+                                    class="form-control @error('responsibler-name') is-invalid @enderror form-control-user"
+                                    type="text" placeholder="Nama" value="{{old('responsibler-name')}}"
                                     name="responsibler-name" />
+                                @error('responsibler-name')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                             <b class="col-6 py-2">Email</b>
                             <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Email" value=""
+                                <input
+                                    class="form-control @error('responsibler-email') is-invalid @enderror form-control-user"
+                                    type="text" placeholder="Email" value="{{old('responsibler-email')}}"
                                     name="responsibler-email" />
+                                @error('responsibler-email')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                             <b class="col-6 py-2">No. Telpon</b>
                             <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="No Telepon"
-                                    value="" name="responsibler-telp" />
+                                <input
+                                    class="form-control @error('responsibler-telp') is-invalid @enderror form-control-user"
+                                    type="text" placeholder="No Telepon" value="{{old('responsibler-telp')}}"
+                                    name="responsibler-telp" />
+                                @error('responsibler-telp')
+                                <div class="invalid-feedback">
+                                    {{$message}}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -153,7 +231,7 @@
                     <!-- Factory -->
                     <div class="row mb-5 dynamic-element-parent" data-name="factory">
                         <h6 class="text-danger col-12">
-                            <b>Pabrik*</b>
+                            <b>Pabrik</b>
                         </h6>
                         <div class="row col-12">
                             <b class="col-6 py-2">Nama Pabrik</b>
@@ -250,7 +328,10 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mb-4">
-                        <button class="btn btn-primary mx-auto">SIMPAN</button>
+                        <button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal"
+                            data-bs-target="#actionModal">
+                            Simpan
+                        </button>
                     </div>
                 </div>
             </div>
@@ -294,7 +375,10 @@
                         <li class="row">
                             <p class="mb-2 col-6">
                                 {{ $value["title"] }}
+                                @if($value['name'] !== 'lainnya')
                                 <span class="text-danger">*</span>
+                                @else
+                                @endif
                             </p>
                             <div class="input-group mb-3 col-6">
                                 <div class="custom-file">
@@ -310,7 +394,29 @@
                 </div>
             </div>
         </div>
-    </form>
-</div>
+    </div>
+    <div class="modal fade" id="actionModal" tabindex="-1" aria-labelledby="actionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="actionModalLabel">
+                        <i class="fa fa-angle-left mt-1 mr-2" style="cursor: pointer" data-bs-dismiss="modal"></i>
+                        <span id="status_name" class="text-capitalize"></span>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row p-2">
+                        <h5 id="confirm-parent" class="text-center col-12 mb-0">Pastikan Data Yang Anda Kirim Benar!
+                        </h5>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+</form>
 @endsection
