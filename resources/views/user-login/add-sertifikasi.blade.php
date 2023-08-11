@@ -28,7 +28,59 @@
                     {{-- Data Pelaku Usaha --}}
                     <div class="row mb-5">
                         <h6 class="text-danger col-12">
-                            <b>Data Pelaku Usaha*</b>
+                            <h6 class="text-danger col-12">
+                                <b>Data pelaku usaha*</b>
+                            </h6>
+                            <div class="row col-12">
+                                <b class="col-6 py-2">Nama</b>
+                                <div class="col-6 form-group">
+                                    <input
+                                        class="form-control form-control-user @error('reg-name') is-invalid @enderror"
+                                        type="text" placeholder="Nama pelaku usaha" value="{{old('reg-name')}}"
+                                        name="reg-name" />
+                                    @error('reg-name')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <b class="col-6 py-2">Alamat</b>
+                                <div class="col-6 form-group">
+                                    <input
+                                        class="form-control form-control-user @error('reg-address') is-invalid @enderror"
+                                        type="text" placeholder="Alamat pelaku usaha" value="{{old('reg-address')}}"
+                                        name="reg-address" />
+                                    @error('reg-address')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <b class="col-6 py-2">Jenis Usaha</b>
+                                <div class="col-6 form-group">
+                                    <select name="reg-business-type" class="form-control form-control-user
+                                    @error('reg-business-type') is-invalid @enderror">
+                                        <option value="makanan" {{old('reg-business-type')=='makanan' ? 'selected' : ''
+                                            }}>
+                                            Makanan</option>
+                                        <option value="minuman" {{old('reg-business-type')=='minuman' ? 'selected' : ''
+                                            }}>
+                                            Minuman</option>
+                                    </select>
+                                </div>
+                                <b class="col-6 py-2">Skala Usaha</b>
+                                <div class="col-6 form-group">
+                                    <input
+                                        class="form-control form-control-user @error('reg-business-type') is-invalid @enderror"
+                                        type="text" placeholder="UMKM" value="{{old('reg-business-type')}}"
+                                        name="reg-business-type" />
+                                    @error('reg-business-type')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
                         </h6>
                     </div>
                     <!-- Certification -->
@@ -41,8 +93,8 @@
                             <div class="col-6 form-group">
                                 <input
                                     class="form-control form-control-user @error('sertif-number') is-invalid @enderror"
-                                    type="text" placeholder="No. Surat
-                                Permohonan" value="{{old('sertif-number')}}" name="sertif-number" />
+                                    type="text" placeholder="No. Surat Permohonan" value="{{old('sertif-number')}}"
+                                    name="sertif-number" />
                                 @error('sertif-number')
                                 <div class="invalid-feedback">
                                     {{$message}}

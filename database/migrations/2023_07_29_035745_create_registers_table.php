@@ -15,12 +15,10 @@ class CreateRegistersTable extends Migration
     {
         Schema::create('registers', function (Blueprint $table) {
             $table->id();
-            $table->string('reg_number');
-            $table->timestamp('reg_date');
-            $table->string('reg_region');
-            $table->string('reg_type');
-            $table->string('reg_status');
-            $table->string('reg_channel');
+            $table->string('name');
+            $table->string('address');
+            $table->string('business_type');
+            $table->string('business_scale');
             $table->timestamps();
         });
     }
