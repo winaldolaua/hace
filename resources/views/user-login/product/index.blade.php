@@ -12,7 +12,7 @@
         <div class="card shadow mb-5">
             <div class="card-body p-2">
                 <div class="row my-4 mx-2">
-                    <div class="col-9">
+                    <div class="col-12">
                         <form action="{{ $request->url() }}" method="GET">
                             @if (isset($request->status))
                             <input type="hidden" name="status" value="{{$request->status}}" />
@@ -22,11 +22,6 @@
                                 value="{{$request->search}}" />
                         </form>
                     </div>
-                    @can('penyelia')
-                    <button class="btn btn-primary full-width col-3" data-bs-toggle="modal" data-bs-target="#addModal">
-                        Ajukan Sertifikasi
-                    </button>
-                    @endcan
                 </div>
                 {{--/TODO: PAGINATION--}}
                 <div class="table-responsive px-2">

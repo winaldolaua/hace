@@ -26,22 +26,22 @@ class SertificationController extends Controller
         //     'title' => 'required|unique:posts|max:255',
         //     'body' => 'required',
         // ]);
-        // $validate_sertif = $request->validate([
-        //     // sertif
-        //     'sertif-number' => 'required|size:13',
-        //     'sertif-layanan' => 'required',
-        //     'sertif-jenis-product' => 'required',
-        //     'sertif-merek' => 'required',
-        //     'sertif-area' => 'required',
-        //     'sertif-lph' => 'required',
-        //     'sertif-tgl-surat-permohonan' => 'required',
-        //     // responsibler
-        //     'responsibler-name' => 'required|min:3',
-        //     'responsibler-email' => 'required|email:dns',
-        //     'responsibler-telp' => 'required|min:11|numeric'
-        //     // 
-        // ]);
-
+         $validate_sertif = $request->validate([
+             // sertif
+             'sertif-number' => 'required|size:13',
+             'sertif-layanan' => 'required',
+             'sertif-jenis-produk' => 'required',
+             'sertif-merek' => 'required',
+             'sertif-area' => 'required',
+             'sertif-lph' => 'required',
+             'sertif-tgl-surat-permohonan' => 'required',
+             // responsibler
+             'responsibler-name' => 'required|min:3',
+             'responsibler-email' => 'required|email:dns',
+             'responsibler-telp' => 'required|min:11|numeric'
+             //
+         ]);
+        dd($validate_sertif);
         try {
             DB::transaction(function () use ($request, $list_file) {
                 $res = Responsibler::create([

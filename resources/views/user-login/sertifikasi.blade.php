@@ -138,6 +138,11 @@
                                                 Unduh Sertifikat
                                             </a>
                                             @endif
+                                            @if ($value->status->name === "dikembalikan")
+                                            <a class="dropdown-item"
+                                                href="{{url('sertifikasi/edit/'.$value->id_number)}}">Edit & Kirim Ulang
+                                            </a>
+                                            @endif
                                             @if ($value->status->name === "lunas")
                                             <a class="dropdown-item"
                                                 href="{{ asset('storage/sttd').'/'.$value->document->firstWhere('type' , 'sttd' )->name}}"

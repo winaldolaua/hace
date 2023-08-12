@@ -15,7 +15,7 @@ class SertificationFactory extends Factory
     {
         return [
             //'status_id' => $this->faker->numberBetween(1, 12),
-            'status_id' => 1,
+            'status_id' => 10,
             'id_number' => $this->faker->randomNumber(5, true),
             'date' => $this->faker->date(),
             'apply_number' => $this->faker->randomNumber(7, true),
