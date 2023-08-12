@@ -35,13 +35,14 @@ class SertificationController extends Controller
              'sertif-area' => 'required',
              'sertif-lph' => 'required',
              'sertif-tgl-surat-permohonan' => 'required',
-             // responsibler
+            // // responsibler
              'responsibler-name' => 'required|min:3',
              'responsibler-email' => 'required|email:dns',
-             'responsibler-telp' => 'required|min:11|numeric'
-             //
+             'responsibler-telp' => 'required|min:11|numeric',
+             // legal-aspect
+             'aspect-doc-number.*' => 'required'
+
          ]);
-        dd($validate_sertif);
         try {
             DB::transaction(function () use ($request, $list_file) {
                 $res = Responsibler::create([
@@ -165,7 +166,7 @@ class SertificationController extends Controller
         Sertification::where('id', $request->id)->update($update);
         return redirect()->back();
     }
-    public function addSertif()
+    public function addSertif($id_number = false)
     {
         // dd(now());
 
@@ -225,11 +226,15 @@ class SertificationController extends Controller
             'Makanan ringan siap santap',
             'Penyediaan makanan dan minuman dengan pengolahan',
         ]);
+        if ($id_number){
+            $data = Sertification::where("id_number", $id_number)->first();
+        }
         return view('user-login.add-sertifikasi', [
             "title" => "Tambah Sertifikasi",
             "active" => 'sertifikasi',
             "list_file" => $list_file,
             "list_product" => $list_product,
+            "data" => isset($data) ? $data : false
         ]);
     }
     public function detilSertif($id_number)
