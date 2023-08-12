@@ -18,7 +18,7 @@ use App\Models\Status;
 
 class SertificationController extends Controller
 {
-    public function addSertifPost(Request $request)
+    public function addSertifPost(Request $request, $id_number = 0)
     {
         $list_file = ["nib", "surat-permohonan", "formulir-pendaftaran", "aspek-legal", "penyelia-halal", "daftar-produk", "proses-pengolahan", "jaminan-halal", "salinan-sertif", "lainnya"];
 
@@ -26,7 +26,8 @@ class SertificationController extends Controller
         //     'title' => 'required|unique:posts|max:255',
         //     'body' => 'required',
         // ]);
-         $validate_sertif = $request->validate([
+        $data = Sertification::where("id_number", $id_number)->first();
+        $validate_sertif = $request->validate([
              // sertif
              'sertif-number' => 'required|size:13',
              'sertif-layanan' => 'required',
@@ -40,17 +41,27 @@ class SertificationController extends Controller
              'responsibler-email' => 'required|email:dns',
              'responsibler-telp' => 'required|min:11|numeric',
              // legal-aspect
-             'aspect-doc-number.*' => 'required'
+             'aspect-doc-number.*' => 'required',
+             'aspect-agency.*' => 'required'
 
          ]);
+        // dd($data);
         try {
-            DB::transaction(function () use ($request, $list_file) {
-                $res = Responsibler::create([
+            DB::transaction(function () use ($request, $list_file, $data) {
+                $res = Responsibler::updateOrCreate(
+                [
+                    'id' => $data->responsibler_id
+                ],
+                [
                     'name' => $request->input('responsibler-name'),
                     'email' => $request->input('responsibler-email'),
                     'number' => $request->input('responsibler-telp')
                 ]);
-                $certification = Sertification::create([
+                $certification = Sertification::updateOrCreate(
+                [
+                    'id' => $data->id
+                ],
+                [
                     'responsibler_id' => $res->id,
                     'status_id' => 1,
                     'id_number' => random_int(1000, 9999),
@@ -234,6 +245,7 @@ class SertificationController extends Controller
             "active" => 'sertifikasi',
             "list_file" => $list_file,
             "list_product" => $list_product,
+            "id_number" => $id_number,
             "data" => isset($data) ? $data : false
         ]);
     }

@@ -2,7 +2,7 @@
 <div class="m-5">
     <h1><b>Tambah Sertifikasi</b></h1>
 </div>
-<form action="{{ route('add-sertif') }}" method="post" enctype="multipart/form-data" class="row col-12">
+<form action="{{ route('add-sertif', $id_number) }}" method="post" enctype="multipart/form-data" class="row col-12">
     <div class="row mx-4">
         @csrf
         <div class="col-8">
@@ -36,7 +36,8 @@
                                 <div class="col-6 form-group">
                                     <input
                                         class="form-control form-control-user @error('reg-name') is-invalid @enderror"
-                                        type="text" placeholder="Nama pelaku usaha" value="{{old('reg-name')}}"
+                                        type="text" placeholder="Nama pelaku usaha"
+                                        value="{{$data ? 'isiin $data->variablenya' : old('reg-name')}}"
                                         name="reg-name" />
                                     @error('reg-name')
                                     <div class="invalid-feedback">
@@ -48,7 +49,8 @@
                                 <div class="col-6 form-group">
                                     <input
                                         class="form-control form-control-user @error('reg-address') is-invalid @enderror"
-                                        type="text" placeholder="Alamat pelaku usaha" value="{{old('reg-address')}}"
+                                        type="text" placeholder="Alamat pelaku usaha"
+                                        value="{{$data ? 'isiin $data->variablenya' : old('reg-address')}}"
                                         name="reg-address" />
                                     @error('reg-address')
                                     <div class="invalid-feedback">
@@ -60,11 +62,11 @@
                                 <div class="col-6 form-group">
                                     <select name="reg-business-type" class="form-control form-control-user
                                     @error('reg-business-type') is-invalid @enderror">
-                                        <option value="makanan" {{old('reg-business-type')=='makanan' ? 'selected' : ''
-                                            }}>
+                                        <option value="makanan" {{($data ? 'isiin $data->variablenya' :
+                                            old('reg-business-type'))=='makanan' ? 'selected' : '' }}>
                                             Makanan</option>
-                                        <option value="minuman" {{old('reg-business-type')=='minuman' ? 'selected' : ''
-                                            }}>
+                                        <option value="minuman" {{($data ? 'isiin $data->variablenya' :
+                                            old('reg-business-type'))=='minuman' ? 'selected' : '' }}>
                                             Minuman</option>
                                     </select>
                                 </div>
@@ -72,7 +74,8 @@
                                 <div class="col-6 form-group">
                                     <input
                                         class="form-control form-control-user @error('reg-business-type') is-invalid @enderror"
-                                        type="text" placeholder="UMKM" value="{{old('reg-business-type')}}"
+                                        type="text" placeholder="UMKM"
+                                        value="{{$data ? 'isiin $data->variablenya' : old('reg-business-type')}}"
                                         name="reg-business-type" />
                                     @error('reg-business-type')
                                     <div class="invalid-feedback">
@@ -93,8 +96,8 @@
                             <div class="col-6 form-group">
                                 <input
                                     class="form-control form-control-user @error('sertif-number') is-invalid @enderror"
-                                    type="text" placeholder="No. Surat Permohonan" value="{{old('sertif-number')}}"
-                                    name="sertif-number" />
+                                    type="text" placeholder="No. Surat Permohonan"
+                                    value="{{$data ? $data->id : old('sertif-number')}}" name="sertif-number" />
                                 @error('sertif-number')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -105,9 +108,11 @@
                             <div class="col-6 form-group">
                                 <select name="sertif-layanan" class="form-control form-control-user
                                     @error('sertif-layanan') is-invalid @enderror">
-                                    <option value="makanan" {{old('sertif-layanan')=='makanan' ? 'selected' : '' }}>
+                                    <option value="makanan" {{($data ? $data->service_type :
+                                        old('sertif-layanan'))=='makanan' ? 'selected' : '' }}>
                                         Makanan</option>
-                                    <option value="minuman" {{old('sertif-layanan')=='minuman' ? 'selected' : '' }}>
+                                    <option value="minuman" {{($data ? $data->service_type :
+                                        old('sertif-layanan'))=='minuman' ? 'selected' : '' }}>
                                         Minuman</option>
                                 </select>
                                 @error('sertif-layanan')
@@ -122,8 +127,8 @@
                                     class="form-control form-control-user @error('sertif-jenis-produk') is-invalid @enderror"
                                     style="overflow-x: auto;" value="{{old('sertif-jenis-produk')}}">
                                     @foreach($list_product as $value)
-                                    <option value="{{Str::slug($value)}}"
-                                        {{old('sertif-jenis-produk')==Str::slug($value) ? 'selected' : '' }}>
+                                    <option value="{{Str::slug($value)}}" {{($data ? $data->product_type :
+                                        old('sertif-jenis-produk'))==Str::slug($value) ? 'selected' : '' }}>
                                         {{$value}}
                                     </option>
                                     @endforeach
@@ -140,7 +145,8 @@
                                     placeholder="Merek Dagang" value="" name="sertif-merek" /> --}}
                                 <textarea id="" cols="20" rows="5" type=" text"
                                     class="form-control form-control-user @error('sertif-merek') is-invalid @enderror"
-                                    placeholder="Merek Dagang" name="sertif-merek">{{old('sertif-merek')}}</textarea>
+                                    placeholder="Merek Dagang" name="sertif-merek">{{$data ? $data->doc_type :
+                                        old('sertif-merek')}}</textarea>
                                 @error('sertif-merek')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -152,10 +158,12 @@
                                 <select name="sertif-area"
                                     class="form-control @error('sertif-area') is-invalid @enderror form-control-user"
                                     value="{{old('sertif-area')}}">
-                                    <option value="area-pemasaran1">
+                                    <option value="area-pemasaran1" {{($data ? $data->install_area :
+                                        old('sertif-area'))=='area-pemasaran1' ? 'selected' : '' }}>
                                         area pemasaran 1
                                     </option>
-                                    <option value="area-pemasaran2">
+                                    <option value="area-pemasaran2" {{($data ? $data->install_area :
+                                        old('sertif-area'))=='area-pemasaran2' ? 'selected' : '' }}>
                                         area pemasaran 2
                                     </option>
                                     @error('sertif-area')
@@ -170,8 +178,10 @@
                             <div class="col-6 form-group">
                                 <select name="sertif-lph" value="{{old('sertif-lph')}}"
                                     class="form-control @error('sertif-lph') is-invalid @enderror form-control-user">
-                                    <option value="lph1">lph 1</option>
-                                    <option value="lph2">lph 2</option>
+                                    <option value="lph1" {{($data ? $data->lph :
+                                        old('sertif-lph'))=='lph1' ? 'selected' : '' }}>lph 1</option>
+                                    <option value="lph2" {{($data ? $data->lph :
+                                        old('sertif-lph'))=='lph2' ? 'selected' : '' }}>lph 2</option>
                                 </select>
                                 @error('sertif-lph')
                                 <div class="invalid-feedback">
@@ -184,7 +194,7 @@
                                 <input type="date"
                                     class="form-control form-control-user @error('sertif-tgl-surat-permohonan') is-invalid @enderror"
                                     name="sertif-tgl-surat-permohonan"
-                                    value="{{old('sertif-tgl-surat-permohonan') ? old('sertif-tgl-surat-permohonan') : now()->format('Y-m-d')}}" />
+                                    value="{{$data ?  date('Y-m-d', strtotime($data->date)) : old('sertif-tgl-surat-permohonan')}}" />
                                 @error('sertif-tgl-surat-permohonan')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -203,7 +213,8 @@
                             <div class="col-6 form-group">
                                 <input
                                     class="form-control @error('responsibler-name') is-invalid @enderror form-control-user"
-                                    type="text" placeholder="Nama" value="{{old('responsibler-name')}}"
+                                    type="text" placeholder="Nama"
+                                    value="{{$data ? $data->responsibler->name : old('responsibler-name')}}"
                                     name="responsibler-name" />
                                 @error('responsibler-name')
                                 <div class="invalid-feedback">
@@ -215,7 +226,8 @@
                             <div class="col-6 form-group">
                                 <input
                                     class="form-control @error('responsibler-email') is-invalid @enderror form-control-user"
-                                    type="text" placeholder="Email" value="{{old('responsibler-email')}}"
+                                    type="text" placeholder="Email"
+                                    value="{{$data ? $data->responsibler->email : old('responsibler-email')}}"
                                     name="responsibler-email" />
                                 @error('responsibler-email')
                                 <div class="invalid-feedback">
@@ -227,7 +239,8 @@
                             <div class="col-6 form-group">
                                 <input
                                     class="form-control @error('responsibler-telp') is-invalid @enderror form-control-user"
-                                    type="text" placeholder="No Telepon" value="{{old('responsibler-telp')}}"
+                                    type="text" placeholder="No Telepon"
+                                    value="{{$data ? $data->responsibler->number : old('responsibler-telp')}}"
                                     name="responsibler-telp" />
                                 @error('responsibler-telp')
                                 <div class="invalid-feedback">
@@ -242,6 +255,11 @@
                     @foreach ($errors->get('aspect-doc-number.*') as $index => $value)
                     <x-forms.legal-aspect :legal="explode('.',$index)[1]" />
                     @endforeach
+                    @elseif($data)
+                    {{--@foreach ($data->legalist as $index => $value)
+                    <x-forms.legal-aspect :val="$value" />
+                    @endforeach--}}
+                    @else
                     <x-forms.legal-aspect />
                     @endif
                     <!-- Factory -->
