@@ -13,10 +13,12 @@ class Factory extends Component
      */
     public $legal;
     public $val;
-    public function __construct($legal = 0, $val = false)
+    public $idx;
+    public function __construct($legal = 0, $val = false, $idx = 0)
     {
         $this->legal = $legal;
         $this->val = $val;
+        $this->idx = $idx;
     }
 
     /**

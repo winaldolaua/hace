@@ -270,7 +270,7 @@
                     @endforeach
                     @elseif($data)
                     @foreach ($data->factories as $index => $value)
-                    <x-forms.factory :val="$value" />
+                    <x-forms.factory :val="$value" :idx="$index" />
                     @endforeach
                     @else
                     <x-forms.factory />
@@ -283,7 +283,7 @@
                     @endforeach
                     @elseif($data)
                     @foreach ($data->factories as $index => $value)
-                    <x-forms.outlet :val="$value" />
+                    <x-forms.outlet :val="$value" :idx="$index" />
                     @endforeach
                     @else
                     <x-forms.outlet />
@@ -296,7 +296,7 @@
                     @endforeach
                     @elseif($data)
                     @foreach ($data->factories as $index => $value)
-                    <x-forms.product :val="$value" />
+                    <x-forms.product :val="$value" :idx="$index" />
                     @endforeach
                     @else
                     <x-forms.product />
@@ -312,31 +312,6 @@
             </div>
         </div>
         <div class="col-4">
-            {{--<div class="card shadow mb-5">
-                <div class="card-header">
-                    <h4 class="mb-0 text-white py-2">
-                        <b>Data Pelaku Usaha</b>
-                    </h4>
-                </div>
-                <div class="card-body py-2 px-3">
-                    <div class="mb-2 d-flex flex-column">
-                        <span>Nama</span>
-                        <b>xxxxxxx</b>
-                    </div>
-                    <div class="mb-2 d-flex flex-column">
-                        <span>Alamat</span>
-                        <b>Jl. in aja dulu</b>
-                    </div>
-                    <div class="mb-2 d-flex flex-column">
-                        <span>Jenis Usaha</span>
-                        <b>xxxxxxx</b>
-                    </div>
-                    <div class="mb-2 d-flex flex-column">
-                        <span>Skala Usaha</span>
-                        <b>xxxxxxx</b>
-                    </div>
-                </div>
-            </div>--}}
             <!-- Document -->
             <div class="card shadow mb-5">
                 <div class="card-header">

@@ -55,7 +55,7 @@
         </div>
         <div class="col-12 d-flex justify-content-end">
             <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
-                style="display: none">Hapus</button>
+                style="{{$legal || (isset($val) && $idx != 0) ? '' : 'display: none'}}">Hapus</button>
             <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
         </div>
     </div>
