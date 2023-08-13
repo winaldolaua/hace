@@ -27,7 +27,7 @@ class SertificationController extends Controller
         //     'title' => 'required|unique:posts|max:255',
         //     'body' => 'required',
         // ]);
-        $data = Sertification::where("id_number", $id_number)->first();
+        $data = Sertification::where("id", $id_number)->first();
         $validate_sertif = $request->validate([
             // register
             'reg-name' => 'required|min:3',
@@ -100,7 +100,6 @@ class SertificationController extends Controller
                         'responsibler_id' => $res->id,
                         'register_id' => $reg->id,
                         'status_id' => 1,
-                        'id_number' => random_int(1000, 9999),
                         'date' => Carbon::now(),
                         'apply_number' => $request->input('sertif-number'),
                         'service_type' => $request->input('sertif-layanan'),
@@ -280,7 +279,7 @@ class SertificationController extends Controller
             'Penyediaan makanan dan minuman dengan pengolahan',
         ]);
         if ($id_number) {
-            $data = Sertification::where("id_number", $id_number)->first();
+            $data = Sertification::where("id", $id_number)->first();
         }
         return view('user-login.add-sertifikasi', [
             "title" => "Tambah Sertifikasi",
@@ -298,7 +297,7 @@ class SertificationController extends Controller
         return view('user-login.detail', [
             "title" => "Detail Sertifikasi",
             "active" => "sertifikasi",
-            "data" => Sertification::where("id_number", $id_number)->first()
+            "data" => Sertification::where("id", $id_number)->first()
         ]);
     }
 }

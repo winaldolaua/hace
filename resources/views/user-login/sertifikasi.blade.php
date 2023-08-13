@@ -67,7 +67,7 @@
                         <tbody>
                             @foreach($data as $index => $value)
                             <tr>
-                                <td>{{$value->id_number}}</td>
+                                <td>{{$value->id}}</td>
                                 <td>
                                     {{\Carbon\Carbon::parse($value->date)->format('d M Y')}}
                                 </td>
@@ -91,7 +91,7 @@
                                         <div class="dropdown-menu">
                                             {{-- ALL --}}
                                             <a class="dropdown-item"
-                                                href="{{url('sertifikasi/detail/'.$value->id_number)}}">Detail</a>
+                                                href="{{url('sertifikasi/detail/'.$value->id)}}">Detail</a>
                                             {{-- AUDITOR --}}
                                             @can('auditor')
                                             @if ($value->status->name === "verifikasi")
@@ -139,8 +139,8 @@
                                             </a>
                                             @endif
                                             @if ($value->status->name === "dikembalikan")
-                                            <a class="dropdown-item"
-                                                href="{{url('sertifikasi/edit/'.$value->id_number)}}">Edit & Kirim Ulang
+                                            <a class="dropdown-item" href="{{url('sertifikasi/edit/'.$value->id)}}">Edit
+                                                & Kirim Ulang
                                             </a>
                                             @endif
                                             @if ($value->status->name === "lunas")

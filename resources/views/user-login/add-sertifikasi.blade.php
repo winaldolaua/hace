@@ -1,6 +1,6 @@
 @extends('layout.main') @section('container')
 <div class="m-5">
-    <h1><b>Tambah Sertifikasi</b></h1>
+    <h1><b>{{$data ? 'Edit' : 'Tambah'}} Sertifikasi</b></h1>
 </div>
 <form action="{{ route('add-sertif', $id_number) }}" method="post" enctype="multipart/form-data" class="row col-12">
     <div class="row mx-4">
@@ -14,9 +14,10 @@
                     <div class="row mb-5">
                         <div class="row col-6">
                             <b class="col-6 py-2">Nomor ID</b>
-                            <span class="col-6 py-2">xxxxxxx</span>
+                            <span class="col-6 py-2">{{$data ? $data->id : 'xxxxxx'}}</span>
                             <b class="col-6 py-2">Tanggal</b>
-                            <span class="col-6 py-2">{{\Carbon\Carbon::now()->format('d M Y')}}</span>
+                            <span
+                                class="col-6 py-2">{{$data ? date('d M Y', strtotime($data->created_at)) : 'xxxxxx'}}</span>
                             <b class="col-6 py-2">Jenis Pengajuan</b>
                             <span class="col-6 py-2">Baru</span>
                         </div>
@@ -322,7 +323,7 @@
                 <div class="card-body py-2 px-3">
                     <ul class="pl-0" style="list-style-type: none">
                         @foreach ($list_file as $file => $value)
-                        <li class="row">
+                        <li class="row align-items-center">
                             <p class="mb-2 col-6">
                                 {{ $value["title"] }}
                                 @if($value['name'] !== 'lainnya')
@@ -333,7 +334,7 @@
                             <div class="input-group mb-3 col-6">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="{{ $value['name'] }}"
-                                        name="file{{$file}}" />
+                                        name="file{{$file}}" required />
                                     <label class="custom-file-label" for="{{ $value['name'] }}"
                                         aria-describedby="inputGroupFileAddon02">Pilih File</label>
                                 </div>
