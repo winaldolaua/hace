@@ -18,7 +18,6 @@ class CreateSertificationsTable extends Migration
             $table->foreignId('responsibler_id');
             $table->foreignId('register_id')->nullable();
             $table->foreignId('status_id');
-            // $table->string('id_number');
             $table->timestamp('date');
             $table->string('apply_number', 100);
             $table->string('service_type', 100);

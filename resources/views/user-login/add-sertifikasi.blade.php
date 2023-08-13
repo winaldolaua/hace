@@ -336,7 +336,6 @@
                                 {{ $value["title"] }}
                                 @if($value['name'] !== 'lainnya')
                                 <span class="text-danger">*</span>
-                                @else
                                 @endif
                             </p>
                             <div class="input-group mb-3 col-6">
