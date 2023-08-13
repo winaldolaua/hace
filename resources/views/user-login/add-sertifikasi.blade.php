@@ -257,7 +257,7 @@
                     @endforeach
                     @elseif($data)
                     @foreach ($data->legalist as $index => $value)
-                    <x-forms.legal-aspect :val="$value" />
+                    <x-forms.legal-aspect :val="$value" :idx="$index" />
                     @endforeach
                     @else
                     <x-forms.legal-aspect />
