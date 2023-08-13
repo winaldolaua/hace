@@ -5,7 +5,8 @@
     <div class="row col-12">
         <b class="col-6 py-2">Jenis Dokumen</b>
         <div class="col-6 form-group">
-            <select data-name="aspect-doc" name="aspect-doc[]" class="form-control form-control-user">
+            <select data-name="aspect-doc" name="aspect-doc[]"
+                class="form-control form-control-user @error('aspect-doc.'.$legal) is-invalid @enderror">
                 <option value="jenis-dokumen1" {{($legal ? old('aspect-doc.'.$legal) : (isset($val->type) ? $val->type
                     :''))
                     ===
@@ -21,6 +22,11 @@
                     jenis dokumen 2
                 </option>
             </select>
+            @error('aspect-doc.'.$legal)
+            <div class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
         </div>
         <b class="col-6 py-2">No. Dokumen</b>
         <div class="col-6 form-group">
@@ -35,9 +41,14 @@
         </div>
         <b class="col-6 py-2">Tanggal Dokumen</b>
         <div class="col-6 form-group">
-            <input type="date" data-name="aspect-date" name="aspect-date[]" class="form-control form-control-user"
-                value="{{$legal ? old('aspect-date.'.$legal) : (isset($val->date) ? date('Y-m-d', strtotime($val->date))
+            <input type="date" data-name="aspect-date" name="aspect-date[]"
+                class="form-control form-control-user @error('aspect-date.'.$legal) is-invalid @enderror" value="{{$legal ? old('aspect-date.'.$legal) : (isset($val->date) ? date('Y-m-d', strtotime($val->date))
                 :'') }}" />
+            @error('aspect-date.'.$legal)
+            <div class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
         </div>
         <b class="col-6 py-2">Instansi Penerbit</b>
         <div class="col-6 form-group">

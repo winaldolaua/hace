@@ -4,15 +4,15 @@ namespace App\View\Components\Forms;
 
 use Illuminate\View\Component;
 
-class LegalAspect extends Component
+class Factory extends Component
 {
-    public $legal;
-    public $val;
     /**
      * Create a new component instance.
      *
      * @return void
      */
+    public $legal;
+    public $val;
     public function __construct($legal = 0, $val = false)
     {
         $this->legal = $legal;
@@ -26,6 +26,6 @@ class LegalAspect extends Component
      */
     public function render()
     {
-        return view('components.forms.legal-aspect');
+        return view('components.forms.factory');
     }
 }

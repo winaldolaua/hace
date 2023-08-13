@@ -13,6 +13,10 @@ class Sertification extends Model
     {
         return $this->belongsTo(Responsibler::class);
     }
+    public function register()
+    {
+        return $this->belongsTo(Register::class);
+    }
     public function status()
     {
         return $this->belongsTo(Status::class);

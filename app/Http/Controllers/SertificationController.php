@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Factory;
 use App\Models\Legalist;
+use App\Models\Register;
 use App\Models\Outlet;
 use App\Models\Product;
 use App\Models\Responsibler;
@@ -28,52 +29,88 @@ class SertificationController extends Controller
         // ]);
         $data = Sertification::where("id_number", $id_number)->first();
         $validate_sertif = $request->validate([
-             // sertif
-             'sertif-number' => 'required|size:13',
-             'sertif-layanan' => 'required',
-             'sertif-jenis-produk' => 'required',
-             'sertif-merek' => 'required',
-             'sertif-area' => 'required',
-             'sertif-lph' => 'required',
-             'sertif-tgl-surat-permohonan' => 'required',
+            // register
+            'reg-name' => 'required|min:3',
+            'reg-address' => 'required',
+            'reg-business-type' => 'required',
+            'reg-business-scale' => 'required',
+            // sertif
+            'sertif-number' => 'required|size:13',
+            'sertif-layanan' => 'required',
+            'sertif-jenis-produk' => 'required',
+            'sertif-merek' => 'required',
+            'sertif-area' => 'required',
+            'sertif-lph' => 'required',
+            'sertif-tgl-surat-permohonan' => 'required',
             // // responsibler
-             'responsibler-name' => 'required|min:3',
-             'responsibler-email' => 'required|email:dns',
-             'responsibler-telp' => 'required|min:11|numeric',
-             // legal-aspect
-             'aspect-doc-number.*' => 'required',
-             'aspect-agency.*' => 'required'
+            'responsibler-name' => 'required|min:3',
+            'responsibler-email' => 'required|email:dns',
+            'responsibler-telp' => 'required|min:11|numeric',
+            // legal-aspect
+            'aspect-doc-number.*' => 'required',
+            'aspect-agency.*' => 'required',
+            'aspect-date.*' => 'required',
+            'aspect-doc.*' => 'required',
+            // Factory
+            'factory-name.*' => 'required',
+            'factory-address.*' => 'required',
+            'factory-city.*' => 'required',
+            'factory-region.*' => 'required',
+            'factory-country.*' => 'required',
+            'factory-pos.*' => 'required',
+            // Outlet
+            'outlet-name.*' => 'required',
+            'outlet-address.*' => 'required',
+            'outlet-city.*' => 'required',
+            'outlet-region.*' => 'required',
+            'outlet-country.*' => 'required',
+            // product
+            'product-name.*' => 'required|min:3',
 
-         ]);
+        ]);
         // dd($data);
         try {
             DB::transaction(function () use ($request, $list_file, $data) {
                 $res = Responsibler::updateOrCreate(
-                [
-                    'id' => isset($data) ? $data->responsibler_id : null
-                ],
-                [
-                    'name' => $request->input('responsibler-name'),
-                    'email' => $request->input('responsibler-email'),
-                    'number' => $request->input('responsibler-telp')
-                ]);
+                    [
+                        'id' => isset($data) ? $data->responsibler_id : null
+                    ],
+                    [
+                        'name' => $request->input('responsibler-name'),
+                        'email' => $request->input('responsibler-email'),
+                        'number' => $request->input('responsibler-telp')
+                    ]
+                );
+                $reg = Register::updateOrCreate(
+                    [
+                        'id' => isset($data) ? $data->register_id : null
+                    ],
+                    [
+                        'name' => $request->input('reg-name'),
+                        'address' => $request->input('reg-address'),
+                        'business_type' => $request->input('reg-business-type'),
+                        'business_scale' => $request->input('reg-business-type'),
+                    ]
+                );
                 $certification = Sertification::updateOrCreate(
-                [
-                    'id' => isset($data) ? $data->id : null
-                ],
-                [
-                    'responsibler_id' => $res->id,
-                    'status_id' => 1,
-                    'id_number' => random_int(1000, 9999),
-                    'date' => Carbon::now(),
-                    'apply_number' => $request->input('sertif-number'),
-                    'service_type' => $request->input('sertif-layanan'),
-                    'brand_name' => 'gada',
-                    'lph' => $request->input('sertif-lph'),
-                    'doc_type' => $request->input('sertif-merek'),
-                    'product_type' => $request->input('sertif-jenis-produk'),
-                    'install_area' => $request->input('sertif-area')
-                ]);
+                    [
+                        'id' => isset($data) ? $data->id : null
+                    ],
+                    [
+                        'responsibler_id' => $res->id,
+                        'register_id' => $reg->id,
+                        'status_id' => 1,
+                        'id_number' => random_int(1000, 9999),
+                        'date' => Carbon::now(),
+                        'apply_number' => $request->input('sertif-number'),
+                        'service_type' => $request->input('sertif-layanan'),
+                        'brand_name' => 'gada',
+                        'lph' => $request->input('sertif-lph'),
+                        'doc_type' => $request->input('sertif-merek'),
+                        'product_type' => $request->input('sertif-jenis-produk'),
+                        'install_area' => $request->input('sertif-area')
+                    ]
+                );
                 Legalist::where('sertification_id', $certification->id)->delete();
                 foreach ($request->input('aspect-doc') as $index => $value) {
                     Legalist::create([
@@ -242,7 +279,7 @@ class SertificationController extends Controller
             'Makanan ringan siap santap',
             'Penyediaan makanan dan minuman dengan pengolahan',
         ]);
-        if ($id_number){
+        if ($id_number) {
             $data = Sertification::where("id_number", $id_number)->first();
         }
         return view('user-login.add-sertifikasi', [

@@ -73,11 +73,11 @@
                                 <b class="col-6 py-2">Skala Usaha</b>
                                 <div class="col-6 form-group">
                                     <input
-                                        class="form-control form-control-user @error('reg-business-type') is-invalid @enderror"
+                                        class="form-control form-control-user @error('reg-business-scale') is-invalid @enderror"
                                         type="text" placeholder="UMKM"
-                                        value="{{$data ? 'isiin $data->variablenya' : old('reg-business-type')}}"
-                                        name="reg-business-type" />
-                                    @error('reg-business-type')
+                                        value="{{$data ? 'isiin $data->variablenya' : old('reg-business-scale')}}"
+                                        name="reg-business-scale" />
+                                    @error('reg-business-scale')
                                     <div class="invalid-feedback">
                                         {{$message}}
                                     </div>
@@ -262,105 +262,46 @@
                     @else
                     <x-forms.legal-aspect />
                     @endif
+
                     <!-- Factory -->
-                    <div class="row mb-5 dynamic-element-parent" data-name="factory">
-                        <h6 class="text-danger col-12">
-                            <b>Pabrik</b>
-                        </h6>
-                        <div class="row col-12">
-                            <b class="col-6 py-2">Nama Pabrik</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Nama" value=""
-                                    name="factory-name[]" />
-                            </div>
-                            <b class="col-6 py-2">Alamat</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Alamat" value=""
-                                    name="factory-address[]" />
-                            </div>
-                            <b class="col-6 py-2">Kab/Kota</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Kab/Kota"
-                                    value="" name="factory-city[]" />
-                            </div>
-                            <b class="col-6 py-2">Negara</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Negara" value=""
-                                    name="factory-country[]" />
-                            </div>
-                            <b class="col-6 py-2">Provinsi</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Provinsi"
-                                    value="" name="factory-region[]" />
-                            </div>
-                            <b class="col-6 py-2">Kode Pos</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Kode Pos"
-                                    value="" name="factory-pos[]" />
-                            </div>
-                            <div class="col-12 d-flex justify-content-end">
-                                <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
-                                    style="display: none">Hapus</button>
-                                <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
-                            </div>
-                        </div>
-                    </div>
+                    @if (count($errors->get('factory-name.*')))
+                    @foreach ($errors->get('factory-name.*') as $index => $value)
+                    <x-forms.factory :legal="explode('.',$index)[1]" />
+                    @endforeach
+                    @elseif($data)
+                    @foreach ($data->factories as $index => $value)
+                    <x-forms.factory :val="$value" />
+                    @endforeach
+                    @else
+                    <x-forms.factory />
+                    @endif
+
                     <!-- outlet -->
-                    <div class="row mb-5 dynamic-element-parent" data-name="outlet">
-                        <h6 class="text-danger col-12">
-                            <b>Outlet*</b>
-                        </h6>
-                        <div class="row col-12">
-                            <b class="col-6 py-2">Nama Outlet</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Nama" value=""
-                                    name="outlet-name[]" />
-                            </div>
-                            <b class="col-6 py-2">Alamat</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Alamat" value=""
-                                    name="outlet-address[]" />
-                            </div>
-                            <b class="col-6 py-2">Kab/Kota</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Kab/Kota"
-                                    value="" name="outlet-city[]" />
-                            </div>
-                            <b class="col-6 py-2">Provinsi</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Provinsi"
-                                    value="" name="outlet-region[]" />
-                            </div>
-                            <b class="col-6 py-2">Negara</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Negara" value=""
-                                    name="outlet-country[]" />
-                            </div>
-                            <div class="col-12 d-flex justify-content-end">
-                                <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
-                                    style="display: none">Hapus</button>
-                                <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
-                            </div>
-                        </div>
-                    </div>
+                    @if (count($errors->get('outlet-name.*')))
+                    @foreach ($errors->get('outlet-name.*') as $index => $value)
+                    <x-forms.outlet :legal="explode('.',$index)[1]" />
+                    @endforeach
+                    @elseif($data)
+                    @foreach ($data->factories as $index => $value)
+                    <x-forms.outlet :val="$value" />
+                    @endforeach
+                    @else
+                    <x-forms.outlet />
+                    @endif
+
                     <!-- Product -->
-                    <div class="row mb-5 dynamic-element-parent" data-name="outlet">
-                        <h6 class="text-danger col-12">
-                            <b>Nama Produk*</b>
-                        </h6>
-                        <div class="row col-12">
-                            <b class="col-6 py-2">Nama Produk</b>
-                            <div class="col-6 form-group">
-                                <input class="form-control form-control-user" type="text" placeholder="Nama" value=""
-                                    name="product-name[]" />
-                            </div>
-                            <div class="col-12 d-flex justify-content-end">
-                                <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
-                                    style="display: none">Hapus</button>
-                                <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
-                            </div>
-                        </div>
-                    </div>
+                    @if (count($errors->get('product-name.*')))
+                    @foreach ($errors->get('product-name.*') as $index => $value)
+                    <x-forms.product :legal="explode('.',$index)[1]" />
+                    @endforeach
+                    @elseif($data)
+                    @foreach ($data->factories as $index => $value)
+                    <x-forms.product :val="$value" />
+                    @endforeach
+                    @else
+                    <x-forms.product />
+                    @endif
+
                     <div class="d-flex justify-content-center mb-4">
                         <button type="button" class="btn btn-primary mx-auto" data-bs-toggle="modal"
                             data-bs-target="#actionModal">
