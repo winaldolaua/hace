@@ -298,7 +298,8 @@ class SertificationController extends Controller
         return view('user-login.detail', [
             "title" => "Detail Sertifikasi",
             "active" => "sertifikasi",
-            "data" => Sertification::where("id", $id_number)->first()
+            "data" => Sertification::where("id", $id_number)->first(),
+            "file_data" => Document::where("sertification_id", $id_number)->get(),
         ]);
     }
 }

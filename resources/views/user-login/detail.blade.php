@@ -172,7 +172,15 @@
                 </div>
                 <div class="card-body py-2 px-3">
                     <ul class="pl-0" style="list-style-type: none">
-
+                        @foreach ($file_data as $file => $value)
+                        <li class="row align-items-center mt-2 mb-2">
+                            <p class="mb-2 col-6">
+                                {{$file+1}}. {{ $value->type }}
+                            </p>
+                            <a class="btn btn-primary" href="{{asset('storage/'.$value->type.'/'.$value->name)}}"
+                                target="_blank" download>Download</a>
+                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
