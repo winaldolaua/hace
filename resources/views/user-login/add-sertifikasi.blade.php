@@ -252,10 +252,12 @@
                         </div>
                     </div>
                     <!-- Legal Aspect -->
-                    @if (count($errors->get('aspect-doc-number.*')))
-                    @foreach ($errors->get('aspect-doc-number.*') as $index => $value)
-                    <x-forms.legal-aspect :legal="explode('.',$index)[1]" />
-                    @endforeach
+                    <input id="count-legal" type="hidden" name="count-legal"
+                        value="{{$errors->any() ? old('count-legal') : ($data ? count($data->legalist) : 1)}}">
+                    @if ($errors->any())
+                    @for ($i = 0; $i
+                    < old('count-legal'); $i++) <x-forms.legal-aspect :legal="$i" />
+                    @endfor
                     @elseif($data)
                     @foreach ($data->legalist as $index => $value)
                     <x-forms.legal-aspect :val="$value" :idx="$index" />
@@ -265,7 +267,7 @@
                     @endif
 
                     <!-- Factory -->
-                    @if (count($errors->get('factory-name.*')))
+                    @if ($errors->any())
                     @foreach ($errors->get('factory-name.*') as $index => $value)
                     <x-forms.factory :legal="explode('.',$index)[1]" />
                     @endforeach
@@ -278,7 +280,7 @@
                     @endif
 
                     <!-- outlet -->
-                    @if (count($errors->get('outlet-name.*')))
+                    @if ($errors->any())
                     @foreach ($errors->get('outlet-name.*') as $index => $value)
                     <x-forms.outlet :legal="explode('.',$index)[1]" />
                     @endforeach
@@ -291,7 +293,7 @@
                     @endif
 
                     <!-- Product -->
-                    @if (count($errors->get('product-name.*')))
+                    @if ($errors->any())
                     @foreach ($errors->get('product-name.*') as $index => $value)
                     <x-forms.product :legal="explode('.',$index)[1]" />
                     @endforeach
@@ -334,7 +336,7 @@
                             <div class="input-group mb-3 col-6">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="{{ $value['name'] }}"
-                                        name="file{{$file}}" required />
+                                        name="file{{$file}}" />
                                     <label class="custom-file-label" for="{{ $value['name'] }}"
                                         aria-describedby="inputGroupFileAddon02">Pilih File</label>
                                 </div>

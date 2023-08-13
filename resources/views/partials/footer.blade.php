@@ -27,6 +27,7 @@
         //$( "#target" ).trigger( "click" );
         const parent = $(ev.target).parents('.dynamic-element-parent')
         const name = parent.data('name')
+        const count = $(ev.target).data('count')
         const clone = parent.clone(true, true)
         const btnDel = clone.find('.dynamic-element-delete')
         const inputs = clone.find('input')
@@ -36,16 +37,13 @@
         }
         btnDel.show()
         clone.insertAfter(parent)
+        $(count).val(parseInt($(count).val())+1)
         const allParents = $(`.dynamic-element-parent[data-name="${name}"]`)
-
-        // updateName(allParents)
     });
     $('.dynamic-element-delete').on("click", function (ev) {
-        //console.log(ev.parents())
-        //$( "#target" ).trigger( "click" );
-        console.log(ev)
         const parent = $(ev.target).parents('.dynamic-element-parent')
-        console.log(parent)
+        const count = $(ev.target).data('count')
+        $(count).val(parseInt($(count).val())-1)
         parent.remove()
     });
 </script>

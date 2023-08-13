@@ -64,8 +64,10 @@
 
         <div class="col-12 d-flex justify-content-end">
             <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
-                style="{{$legal || (isset($val) && $idx != 0) ? '' : 'display: none'}}">Hapus</button>
-            <button type="button" class="btn btn-primary col-3 dynamic-element-add">Tambah</button>
+                style="{{$legal || (isset($val) && $idx != 0) ? '' : 'display: none'}}"
+                data-count="#count-legal">Hapus</button>
+            <button type="button" class="btn btn-primary col-3 dynamic-element-add"
+                data-count="#count-legal">Tambah</button>
         </div>
     </div>
 </div>

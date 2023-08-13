@@ -27,6 +27,8 @@ class SertificationController extends Controller
         //     'title' => 'required|unique:posts|max:255',
         //     'body' => 'required',
         // ]);
+        //dd($request);
+
         $data = Sertification::where("id", $id_number)->first();
         $validate_sertif = $request->validate([
             // register
@@ -68,7 +70,6 @@ class SertificationController extends Controller
             'product-name.*' => 'required|min:3',
 
         ]);
-        // dd($data);
         try {
             DB::transaction(function () use ($request, $list_file, $data) {
                 $res = Responsibler::updateOrCreate(
