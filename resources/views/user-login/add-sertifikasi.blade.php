@@ -371,7 +371,7 @@
             </div>
         </div>
         <div class="col-4">
-            <div class="card shadow mb-5">
+            {{--<div class="card shadow mb-5">
                 <div class="card-header">
                     <h4 class="mb-0 text-white py-2">
                         <b>Data Pelaku Usaha</b>
@@ -395,7 +395,7 @@
                         <b>xxxxxxx</b>
                     </div>
                 </div>
-            </div>
+            </div>--}}
             <!-- Document -->
             <div class="card shadow mb-5">
                 <div class="card-header">
