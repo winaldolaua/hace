@@ -340,8 +340,8 @@
                             </p>
                             <div class="input-group mb-3 col-6">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" required id="{{ $value['name'] }}"
-                                        name="file{{$file}}" />
+                                    <input type="file" class="custom-file-input" {{$value['name']==='lainnya'
+                                        ? 'required' : '' }} id="{{ $value['name'] }}" name="file{{$file}}" />
                                     <label class="custom-file-label" for="{{ $value['name'] }}"
                                         aria-describedby="inputGroupFileAddon02">Pilih File</label>
                                 </div>
