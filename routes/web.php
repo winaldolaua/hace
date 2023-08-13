@@ -42,6 +42,7 @@ Route::controller(SertificationController::class)->group(function () {
         Route::get('/sertifikasi/add', 'addSertif');
         Route::get('/sertifikasi/edit/{id_number}', 'addSertif');
         Route::get('/sertifikasi/detail/{id_number}', 'detilSertif');
+        Route::post('/sertification/add', 'addSertifPost')->name('add-sertif');
         Route::post('/sertification/add/{id_number}', 'addSertifPost')->name('add-sertif');
         Route::post('/updateStatus', 'updateStatusSertif')->name('update-status-sertif');
     });

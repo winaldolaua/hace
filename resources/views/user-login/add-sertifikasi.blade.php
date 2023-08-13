@@ -256,9 +256,9 @@
                     <x-forms.legal-aspect :legal="explode('.',$index)[1]" />
                     @endforeach
                     @elseif($data)
-                    {{--@foreach ($data->legalist as $index => $value)
+                    @foreach ($data->legalist as $index => $value)
                     <x-forms.legal-aspect :val="$value" />
-                    @endforeach--}}
+                    @endforeach
                     @else
                     <x-forms.legal-aspect />
                     @endif

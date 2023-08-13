@@ -50,7 +50,7 @@ class SertificationController extends Controller
             DB::transaction(function () use ($request, $list_file, $data) {
                 $res = Responsibler::updateOrCreate(
                 [
-                    'id' => $data->responsibler_id
+                    'id' => isset($data) ? $data->responsibler_id : null
                 ],
                 [
                     'name' => $request->input('responsibler-name'),
@@ -59,7 +59,7 @@ class SertificationController extends Controller
                 ]);
                 $certification = Sertification::updateOrCreate(
                 [
-                    'id' => $data->id
+                    'id' => isset($data) ? $data->id : null
                 ],
                 [
                     'responsibler_id' => $res->id,
@@ -74,6 +74,7 @@ class SertificationController extends Controller
                     'product_type' => $request->input('sertif-jenis-produk'),
                     'install_area' => $request->input('sertif-area')
                 ]);
+                Legalist::where('sertification_id', $certification->id)->delete();
                 foreach ($request->input('aspect-doc') as $index => $value) {
                     Legalist::create([
                         'sertification_id' => $certification->id,
@@ -83,6 +84,7 @@ class SertificationController extends Controller
                         'agency_name' => $request->input('aspect-agency')[$index]
                     ]);
                 }
+                Factory::where('sertification_id', $certification->id)->delete();
                 foreach ($request->input('factory-name') as $index => $value) {
                     Factory::create([
                         'sertification_id' => $certification->id,
@@ -94,6 +96,7 @@ class SertificationController extends Controller
                         'pos' => $request->input('factory-pos')[$index]
                     ]);
                 }
+                Outlet::where('sertification_id', $certification->id)->delete();
                 foreach ($request->input('outlet-name') as $index => $value) {
                     Outlet::create([
                         'sertification_id' => $certification->id,
@@ -105,12 +108,14 @@ class SertificationController extends Controller
                         'country' => $request->input('outlet-country')[$index]
                     ]);
                 }
+                Product::where('sertification_id', $certification->id)->delete();
                 foreach ($request->input('product-name') as $index => $value) {
                     Product::create([
                         'sertification_id' => $certification->id,
                         'product_name' => $request->input('product-name')[$index],
                     ]);
                 }
+                Document::where('sertification_id', $certification->id)->delete();
                 foreach ($list_file as $index => $filetype) {
                     $file = $request->file('file' . $index);
                     if (isset($file)) {
