@@ -14,7 +14,7 @@ class LegalAspect extends Component
      *
      * @return void
      */
-    public function __construct($legal = 0, $val = false, $idx = 0)
+    public function __construct($legal = -1, $val = false, $idx = 0)
     {
         $this->legal = $legal;
         $this->val = $val;
