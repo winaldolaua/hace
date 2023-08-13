@@ -32,8 +32,9 @@
         </div>
         <b class="col-6 py-2">No. Dokumen</b>
         <div class="col-6 form-group">
-            <input type="text" placeholder="No. Dokumen" value="{{$legal != -1 ? old('aspect-doc-number.'.$legal) : (isset($val->number) ? $val->number
-                :'')}}" class="form-control form-control-user @error('aspect-doc-number.'.$legal) is-invalid @enderror"
+            <input type="text" placeholder="No. Dokumen"
+                value="{{$legal != -1 ? old('aspect-doc-number.'.$legal) : (isset($val->number) ? $val->number:'')}}"
+                class="form-control form-control-user @error('aspect-doc-number.'.$legal) is-invalid @enderror"
                 data-name="aspect-doc-number" name="aspect-doc-number[]" />
             @error('aspect-doc-number.'.$legal)
             <div class="invalid-feedback">
@@ -66,10 +67,10 @@
 
         <div class="col-12 d-flex justify-content-end">
             <button type="button" class="btn btn-danger col-3 dynamic-element-delete mr-2"
-                style="{{$legal != -1 || (isset($val) && $idx != 0) ? '' : 'display: none'}}"
-                data-count="#count-legal">Hapus</button>
+                style="{{$legal >= 1 || (isset($val) && $idx != 0) ? '' : 'display: none'}}"
+                data-count="#count-legal">{{$legal}}Hapus</button>
             <button type="button" class="btn btn-primary col-3 dynamic-element-add"
-                data-count="#count-legal">Tambah</button>
+                data-count="#count-legal">{{$legal}}Tambah</button>
         </div>
     </div>
 </div>

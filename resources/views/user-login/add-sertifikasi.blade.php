@@ -16,8 +16,8 @@
                             <b class="col-6 py-2">Nomor ID</b>
                             <span class="col-6 py-2">{{$data ? $data->id : 'xxxxxx'}}</span>
                             <b class="col-6 py-2">Tanggal</b>
-                            <span
-                                class="col-6 py-2">{{$data ? date('d M Y', strtotime($data->created_at)) : 'xxxxxx'}}</span>
+                            <span class="col-6 py-2">{{$data ? date('d M Y', strtotime($data->created_at)) :
+                                'xxxxxx'}}</span>
                             <b class="col-6 py-2">Jenis Pengajuan</b>
                             <span class="col-6 py-2">Baru</span>
                         </div>
@@ -267,10 +267,12 @@
                     @endif
 
                     <!-- Factory -->
+                    <input id="count-factory" type="hidden" name="count-factory"
+                        value="{{$errors->any() ? old('count-factory') : ($data ? count($data->factories) : 1)}}">
                     @if ($errors->any())
-                    @foreach ($errors->get('factory-name.*') as $index => $value)
-                    <x-forms.factory :legal="explode('.',$index)[1]" />
-                    @endforeach
+                    @for ($i = 0; $i
+                    < old('count-factory'); $i++) <x-forms.factory :legal="$i" />
+                    @endfor
                     @elseif($data)
                     @foreach ($data->factories as $index => $value)
                     <x-forms.factory :val="$value" :idx="$index" />
@@ -280,12 +282,14 @@
                     @endif
 
                     <!-- outlet -->
+                    <input id="count-outlet" type="hidden" name="count-outlet"
+                        value="{{$errors->any() ? old('count-outlet') : ($data ? count($data->outlet) : 1)}}">
                     @if ($errors->any())
-                    @foreach ($errors->get('outlet-name.*') as $index => $value)
-                    <x-forms.outlet :legal="explode('.',$index)[1]" />
-                    @endforeach
+                    @for ($i = 0; $i
+                    < old('count-outlet'); $i++) <x-forms.outlet :legal="$i" />
+                    @endfor
                     @elseif($data)
-                    @foreach ($data->factories as $index => $value)
+                    @foreach ($data->outlet as $index => $value)
                     <x-forms.outlet :val="$value" :idx="$index" />
                     @endforeach
                     @else
@@ -293,12 +297,14 @@
                     @endif
 
                     <!-- Product -->
+                    <input id="count-product" type="hidden" name="count-product"
+                        value="{{$errors->any() ? old('count-product') : ($data ? count($data->product) : 1)}}">
                     @if ($errors->any())
-                    @foreach ($errors->get('product-name.*') as $index => $value)
-                    <x-forms.product :legal="explode('.',$index)[1]" />
-                    @endforeach
+                    @for ($i = 0; $i
+                    < old('count-product'); $i++) <x-forms.product :legal="$i" />
+                    @endfor
                     @elseif($data)
-                    @foreach ($data->factories as $index => $value)
+                    @foreach ($data->product as $index => $value)
                     <x-forms.product :val="$value" :idx="$index" />
                     @endforeach
                     @else
@@ -335,7 +341,7 @@
                             </p>
                             <div class="input-group mb-3 col-6">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="{{ $value['name'] }}"
+                                    <input type="file" class="custom-file-input" required id="{{ $value['name'] }}"
                                         name="file{{$file}}" />
                                     <label class="custom-file-label" for="{{ $value['name'] }}"
                                         aria-describedby="inputGroupFileAddon02">Pilih File</label>

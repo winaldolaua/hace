@@ -16,14 +16,9 @@ class CreateSertificationsTable extends Migration
         Schema::create('sertifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('responsibler_id');
-            // $table->foreignId('factory_id');
-            // $table->foreignId('outlet_id');
-            // $table->foreignId('halalist_id')->nullable();
-            // $table->foreignId('legalist_id');
-            // $table->foreignId('product_id');
             $table->foreignId('register_id')->nullable();
             $table->foreignId('status_id');
-            $table->string('id_number');
+            // $table->string('id_number');
             $table->timestamp('date');
             $table->string('apply_number', 100);
             $table->string('service_type', 100);

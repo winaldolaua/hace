@@ -14,7 +14,7 @@ class Product extends Component
     public $legal;
     public $val;
     public $idx;
-    public function __construct($legal = 0, $val = false, $idx = 0)
+    public function __construct($legal = -1, $val = false, $idx = 0)
     {
         $this->legal = $legal;
         $this->val = $val;
